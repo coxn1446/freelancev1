@@ -15,12 +15,11 @@ module.exports = (app, passport) => {
     res.send(users)
   });*/
 
-  router.get('/', passport.authenticate('openidconnect'));
-
-  router.get('/oauth2/redirect', passport.authenticate('openidconnect', {
+  router.post('/', passport.authenticate('local', {
     successRedirect: 'http://localhost:3000',
     failureRedirect: 'http://localhost:3000/login'
   }));
+
 
   router.post('/logout', function(req, res, next) {
     req.logout(function(err) {

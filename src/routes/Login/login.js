@@ -10,12 +10,17 @@ const Login = () => {
     <div>
       <h1>Will's App</h1>
       <p>Please click this button</p>
-      <form action="http://localhost:4000/login" method="get">
-				<button type="submit">Sign In</button>
-			</form>
-      <form action="http://localhost:4000/login/logout" method="post">
-				<button type="submit">Logout</button>
-			</form>
+      <form action="http://localhost:4000/login" method="post">
+    <section>
+        <label htmlFor="username">Username</label>
+        <input id="username" name="username" type="text" autoComplete="username" required autoFocus></input>
+    </section>
+    <section>
+        <label htmlFor="current-password">Password</label>
+        <input id="current-password" name="password" type="password" autoComplete="current-password" required></input>
+    </section>
+    <button type="submit">Sign in</button>
+</form>
     </div>
   );
 }
