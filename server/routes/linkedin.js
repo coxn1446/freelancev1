@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   app.use('/linkedin', router);
 
-  // Registration Endpoint
+  //
   router.post('/', async (req, res, next) => {
       
   });

@@ -9,17 +9,13 @@ const Login = () => {
   return (
     <div>
       <h1>Will's App</h1>
-      <p>Please login using your username and password</p>
-      <form method="post">
-        <div>
-          <input type="text" placeholder="Enter Username" required></input>
-          <input type="password" placeholder="Enter Password" required></input>
-          <button type="submit">Login</button>
-        </div>
-        <div>
-          <span>Forgot <a>password?</a></span>
-        </div>
-      </form>
+      <p>Please click this button</p>
+      <form action="http://localhost:4000/login" method="get">
+				<button type="submit">Sign In</button>
+			</form>
+      <form action="http://localhost:4000/login/logout" method="post">
+				<button type="submit">Logout</button>
+			</form>
     </div>
   );
 }

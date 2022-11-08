@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div>
-      <p>Hello</p>
+      <p>Hello, William. You are logged in.</p>
     </div>
   );
 }

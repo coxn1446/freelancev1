@@ -1,34 +1,39 @@
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+var OpenIDConnectStrategy = require('passport-openidconnect');
+const db = require("../db/index")
 
 module.exports = (app) => {
-
-  // Initialize passport
   app.use(passport.initialize());  
-  app.use(passport.session());
-  
-  // Set method to serialize data to store in cookie
-  passport.serializeUser((user, done) => {
-    done(null, user.id);
-  });
-  
-  // Set method to deserialize data stored in cookie and attach to req.user
-  passport.deserializeUser((id, done) => {
-    done(null, { id });
-  });
+  app.use(passport.authenticate('session'));
+
 
   // Configure strategy to be use for local login
-  passport.use(new LocalStrategy(
-    async (username, password, done) => {
-      try {
-        const user = await AuthServiceInstance.login({ email: username, password });
-        return done(null, user);
-      } catch(err) {
-        return done(err);
-      }
-    }
-  ));
-  
-  return passport;
+  passport.use(new OpenIDConnectStrategy({
+    issuer: process.env.REACT_APP_AUTH0_DOMAIN + '/',
+    authorizationURL: process.env.REACT_APP_AUTH0_DOMAIN + '/authorize',
+    tokenURL: process.env.REACT_APP_AUTH0_DOMAIN + '/oauth/token',
+    userInfoURL: process.env.REACT_APP_AUTH0_DOMAIN + '/userinfo',
+    clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+    clientSecret: process.env.REACT_APP_AUTH0_CLIENT_SECRETT,
+    callbackURL: 'http://localhost:4000/login/oauth2/redirect',
+    scope: [ 'profile' ]
+  }, function verify(issuer, profile, cb) {
+    return cb(null, profile);
+  }));
 
+  passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+      cb(null, { id: user.id, username: user.username, name: user.displayName });
+    });
+  });
+  
+  passport.deserializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, user);
+    });
+  });
+  
+
+  
+  return passport
 }

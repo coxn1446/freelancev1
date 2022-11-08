@@ -5,34 +5,22 @@ import React from 'react';
 
 
 const Register = () => {
-    function preventDefault() {
-        return false
-    }
 
   return (
     <div>
         <h1>Will's App</h1>
         <p>Please fill in the following information in order to create a profile.</p>
-        <form method="post">
-        <div>
-            <label for="firstName">First Name</label>
-            <input type="text" placeholder="First Name" name="firstName" id="firstName" required></input>
-        </div>
-        <div>
-            <label for="lastName">Last Name</label>
-            <input type="text" placeholder="Last Name" name="lastName" id="lastName" required></input>
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" name="password" id="password" required></input>
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" placeholder="Email" name="email" id="email" required></input>
-        </div>
-            <button type="submit">Submit</button>
-        </form>
-        <button type="submit">Click Me</button>
+        <form action="http://localhost:4000/register" method="post">
+				<section>
+					<label htmlFor="username">Username</label>
+					<input id="username" name="username" type="text" autoComplete="username" required></input>
+				</section>
+				<section>
+					<label htmlFor="new-password">Password</label>
+					<input id="new-password" name="password" type="password" autoComplete="new-password" required></input>
+				</section>
+				<button type="submit">Sign up</button>
+			</form>
     </div>
   );
 }
