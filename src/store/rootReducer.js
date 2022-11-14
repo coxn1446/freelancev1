@@ -3,5 +3,5 @@ import {twitterReducer} from './twitter/twitter.reducer';
 
 
 export default combineReducers({
-  twttier: twitterReducer
+  twttier: twitterReducer,
 });

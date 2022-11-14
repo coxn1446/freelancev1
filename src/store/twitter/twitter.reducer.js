@@ -80,7 +80,7 @@ const twitterSlice = createSlice({
     }
 })
 
-export const selectTwitterName = state => state.twitterName;
-export const selectMessage = state => state.message;
-export const selectTwitterSendTweetForm = state => state.twitterSendTweetForm;
+export const selectTwitterName = state => state.twitter.twitterName;
+export const selectMessage = state => state.twitter.message;
+export const selectTwitterSendTweetForm = state => state.twitter.twitterSendTweetForm;
 export const twitterReducer = twitterSlice.reducer;

@@ -1,18 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const apiCall = createAsyncThunk(
-    "app/apiCall",
+    "twitter/apiCall",
     async (term) => {
         const response = await fetch(`http://localhost:5000/express_backend/${term}`)
         const data = await response.json()
         return data;
     }
   );
-
-
-
+  
   export const twitterSignIn = createAsyncThunk(
-    "app/twitterSignIn",
+    "twitter/twitterSignIn",
         async () => {
            const response = await fetch(`http://127.0.0.1:5000/twitteroauth`,{
             method: 'POST'
@@ -23,7 +21,7 @@ export const apiCall = createAsyncThunk(
 );
 
 export const twitterOAuthStep3 = createAsyncThunk(
-    "app/twitterOAuthStep3",
+    "twitter/twitterOAuthStep3",
     async () => {
         let params = new URLSearchParams(document.location.search);
         const oauthToken = params.get("oauth_token")
@@ -35,7 +33,7 @@ export const twitterOAuthStep3 = createAsyncThunk(
 );
 
 export const twitterSendTweet = createAsyncThunk(
-    "app/twitterSendTweet",
+    "twitter/twitterSendTweet",
         async (tweet) => {
             const response = await fetch(`http://localhost:5000/createTweet/${tweet}`,{
                 method: 'POST'

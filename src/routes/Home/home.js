@@ -8,7 +8,10 @@ const Home = () => {
 
   return (
     <div>
-      <p>Hello, William. You are logged in.</p>
+      <p>Hello, you are logged in.</p>
+      <form action="http://localhost:4000/auth/logout" method="post">
+				<button type="submit">Logout</button>
+			</form>
     </div>
   );
 }

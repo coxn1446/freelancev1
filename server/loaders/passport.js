@@ -1,5 +1,4 @@
 const passport = require('passport');
-//var OpenIDConnectStrategy = require('passport-openidconnect');
 const LocalStrategy = require('passport-local')
 const db = require("../db/index")
 const bcrypt = require('bcrypt')
@@ -7,6 +6,18 @@ const bcrypt = require('bcrypt')
 module.exports = (app) => {
   app.use(passport.initialize());  
   app.use(passport.authenticate('session'));
+
+  passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+      cb(null, { id: user.user_id, username: user.username });
+    });
+  });
+  
+  passport.deserializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, user);
+    });
+  });
 
 
   // Configure strategy to be use for local login
@@ -25,18 +36,6 @@ module.exports = (app) => {
       });
     });
   }));
-
-  passport.serializeUser(function(user, cb) {
-    process.nextTick(function() {
-      cb(null, { id: user.id, username: user.username, name: user.displayName });
-    });
-  });
-  
-  passport.deserializeUser(function(user, cb) {
-    process.nextTick(function() {
-      return cb(null, user);
-    });
-  });
   
 
   

@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const store = new session.MemoryStore();
+const store = new session.MemoryStore;
 
 
 module.exports = (app) => {
@@ -19,9 +19,10 @@ module.exports = (app) => {
   // Parses urlencoded bodies
   app.use(bodyParser.urlencoded({ extended: true }));
 
- 
-  //app.set('trust proxy', 1);
   app.use(cookieParser())
+
+
+  app.set('trust proxy', 1);
 
   // Creates a session
   app.use(
@@ -29,6 +30,11 @@ module.exports = (app) => {
       secret: process.env.REACT_APP_SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
+      cookie: {
+        httpOnly: false,
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24
+      },
       store
     })
   );
