@@ -12,8 +12,8 @@ module.exports = (app, passport) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         await db.query(
-            "INSERT INTO users (username, password) VALUES($1, $2)", 
-            [req.body.username,hashedPassword]
+            "INSERT INTO users (username, password, firstname, lastname, phonenumber) VALUES($1, $2, $3, $4, $5)", 
+            [req.body.username,hashedPassword, req.body.firstname, req.body.lastname, req.body.phonenumber]
         )
         res.redirect('http://localhost:3000/login')
     } catch (err){
@@ -29,6 +29,13 @@ module.exports = (app, passport) => {
 
   router.get('/login', (req, res, next) => {
     res.send(req.session)
+  });
+
+  router.get('/test', (req, res, next) => {
+    req.session.token = 'hello'
+    console.log(req.session)
+    res.end()
+
   });
 
 

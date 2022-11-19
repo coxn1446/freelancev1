@@ -8,26 +8,35 @@ import Async from "react-async"
 
 // Your promiseFn receives all props from Async and an AbortController instance
 const loadCookie = async () => {
-  let number = 0
+  let passport
   await fetch(`http://localhost:4000/auth/login`, {
     method: 'GET',
     credentials: 'include'
   }).then((response) => response.json())
   .then((data) => {
-    const length = Object.keys(data).length;
-    number = length
+    passport = Object.keys(data)[1]
   })
-  return number
+  return passport
 }
 
-const PrivateRoutes = (data) => {
+let username
+
+fetch(`http://localhost:4000/auth/login`, {
+  method: 'GET',
+  credentials: 'include'
+}).then((response) => response.json())
+.then((data) => {
+  username = data.passport.user.username
+})
+
+const PrivateRoutes = () => {
   return(
     <Async promiseFn={loadCookie}>
       {({ data, error, isPending }) => {
         if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
-        if (data === 2) {
-          return (<Outlet></Outlet>)
+        if (data === "passport") {
+          return (<Outlet context={[username]}></Outlet>)
         }
           return(<Navigate to={'/login'}/>)
       }}
