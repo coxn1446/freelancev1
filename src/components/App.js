@@ -11,6 +11,7 @@ import Home from "../routes/Home/home"
 import Register from "../routes/Register/register"
 import PrivateRoutes from "./PrivateRoute"
 import Twitter from "../routes/Twitter/twitter"
+import LinkedIn from "../routes/Linkedin/linkedin"
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route element={<PrivateRoutes/>}>
             <Route path="/" exact element={<Home/>}/>
             <Route path="/twitter" exact element={<Twitter/>}/>
+            <Route path="/linkedin" exact element={<LinkedIn/>}/>
           </Route>
           <Route path="/login" element={<Login></Login>}/>
           <Route path="/register" element={<Register></Register>}/>

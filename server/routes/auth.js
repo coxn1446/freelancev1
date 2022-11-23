@@ -32,9 +32,7 @@ module.exports = (app, passport) => {
   });
 
   router.get('/test', (req, res, next) => {
-    req.session.token = 'hello'
     console.log(req.session)
-    res.end()
 
   });
 

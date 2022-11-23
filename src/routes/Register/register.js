@@ -1,6 +1,6 @@
 import './register.css'
 import freelanceLogo from '../../resources/Freelance v1-logos/Freelance v1-logos.jpeg'
-import React, {useState} from 'react';
+import React from 'react';
 import {
 	Link
   } from 'react-router-dom';

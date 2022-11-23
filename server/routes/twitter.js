@@ -14,7 +14,7 @@ module.exports = (app) => {
 
     app.use('/twitter', router);
 
-    router.post('/twitteroauth', async (req, res) => {
+    router.post('/oauth1', async (req, res) => {
         const endpointURL = "https://api.twitter.com/oauth/request_token";
         const method = "POST";
 
@@ -36,7 +36,7 @@ module.exports = (app) => {
         var requestOptions = {
           method: method,
           headers: myHeaders,
-          redirect: 'follow'
+          redirect: 'follow',
         };
         
         fetch(endpointURL, requestOptions)
@@ -65,21 +65,52 @@ module.exports = (app) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220");
+        myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
 
         const requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        redirect: 'follow'
+        redirect: 'follow',
         };
 
         fetch(`https://api.twitter.com/oauth/access_token?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}&oauth_consumer_key=${consumerKey}&oauth_signature_method=HMAC-SHA1&oauth_timestamp=${timestamp}&oauth_nonce=${nonce}&oauth_version=1.0&oauth_signature=${encodedSignature}`, requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        .then(result => {
+            let finalArray = []
+            function cleanUp(string) {
+                const index = string.indexOf("=");
+                const newString = string.substr(index + 1)
+                finalArray.push(newString)
+              }
+            const array = result.split("&")
+            array.forEach(cleanUp)
+            req.session.passport.twitter = finalArray
+            res.send("Success")
 
+        })
+        .catch(error => console.log('error', error));
     });
 
+    router.get('/user/:username', (req, res) => {
+        const username = req.params.username;
+        const endpointURL = "https://api.twitter.com/1.1/users/show.json";
+        const method = "GET";
+        const bearerToken = process.env.REACT_APP_TWITTER_BEARERTOKEN;
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${bearerToken}`);
+
+        var requestOptions = {
+        method: method,
+        mode: 'cors',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
 
 
-
+       fetch(`${endpointURL}?screen_name=${username}`, requestOptions)
+       .then(response => response.json())
+       .then(result => {res.send(result)})
+       .catch(error => console.log('error', error));
+    })
 }

@@ -6,13 +6,12 @@ import {
 import Async from "react-async"
 
 
-const Twitter = () => {
+const LinkedIn = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const oauthToken = searchParams.get("oauth_token")
-    const oauthVerifier = searchParams.get("oauth_verifier")
+    const code = searchParams.get("code")
 
-    const twitterOAuth3 = async () => {
-        await fetch(`http://localhost:4000/twitter/oauth3/${oauthToken}/${oauthVerifier}`,{
+    const linkedinOAuth3 = async () => {
+        await fetch(`http://localhost:4000/linkedin/oauth3/${code}`,{
             method: 'POST',
             credentials: "include",
             headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
@@ -23,7 +22,7 @@ const Twitter = () => {
     }
 
   return(
-    <Async promiseFn={twitterOAuth3}>
+    <Async promiseFn={linkedinOAuth3}>
       {({ data, error, isPending }) => {
         if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
@@ -37,4 +36,4 @@ const Twitter = () => {
   )
 };
 
-export default Twitter;
+export default LinkedIn;

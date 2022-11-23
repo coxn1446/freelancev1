@@ -19,14 +19,14 @@ const loadCookie = async () => {
   return passport
 }
 
-let username
+let userData
 
 fetch(`http://localhost:4000/auth/login`, {
   method: 'GET',
   credentials: 'include'
 }).then((response) => response.json())
 .then((data) => {
-  username = data.passport.user.username
+  userData = data
 })
 
 const PrivateRoutes = () => {
@@ -36,7 +36,7 @@ const PrivateRoutes = () => {
         if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
         if (data === "passport") {
-          return (<Outlet context={[username]}></Outlet>)
+          return (<Outlet context={[userData]}></Outlet>)
         }
           return(<Navigate to={'/login'}/>)
       }}
