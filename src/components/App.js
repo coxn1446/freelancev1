@@ -12,6 +12,7 @@ import Register from "../routes/Register/register"
 import PrivateRoutes from "./PrivateRoute"
 import Twitter from "../routes/Twitter/twitter"
 import LinkedIn from "../routes/Linkedin/linkedin"
+import Facebook from "../routes/Facebook/facebook"
 
 
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/" exact element={<Home/>}/>
             <Route path="/twitter" exact element={<Twitter/>}/>
             <Route path="/linkedin" exact element={<LinkedIn/>}/>
+            <Route path="/facebook" exact element={<Facebook/>}/>
           </Route>
           <Route path="/login" element={<Login></Login>}/>
           <Route path="/register" element={<Register></Register>}/>
