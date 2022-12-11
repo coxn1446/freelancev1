@@ -32,21 +32,7 @@ module.exports = (app) => {
         .catch(error => console.log('error', error));
     });
 
-    router.get('/user', (req, res) => {
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", `Bearer ${req.session.passport.linkedin.access_token}`);
-      myHeaders.append("Cookie", "lidc=\"b=TB36:s=T:r=T:a=T:p=T:g=3818:u=800:x=1:i=1669172672:t=1669229132:v=2:sig=AQHzMAi--L11-Rt61qkZhtewAIiERItX\"; bcookie=\"v=2&cb02b6b0-649a-42a1-8383-a5ab974c0957\"");
+    router.post('/share', (req, res) => {
 
-      var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-      fetch("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))", requestOptions)
-        .then(response => response.json())
-        .then(result => res.send(result))
-        .catch(error => console.log('error', error));
-      
     })
 }

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import {registerReducer} from './register/register.reducer';
 import {homeReducer} from './home/home.reducer';
+import {blogReducer} from './blog/blog.reducer';
 
 
 export default combineReducers({
   register: registerReducer,
-  home: homeReducer
+  home: homeReducer,
+  blog: blogReducer
 });

@@ -13,13 +13,14 @@ import PrivateRoutes from "./PrivateRoute"
 import Twitter from "../routes/Twitter/twitter"
 import LinkedIn from "../routes/Linkedin/linkedin"
 import Facebook from "../routes/Facebook/facebook"
+import Blog from "../routes/Blog/Blog"
 
 
 
 function App() {
 
   return (
-    <div className="app">
+    <div className="gridContainer">
       <Router>
         <Routes>
           <Route element={<PrivateRoutes/>}>
@@ -27,6 +28,7 @@ function App() {
             <Route path="/twitter" exact element={<Twitter/>}/>
             <Route path="/linkedin" exact element={<LinkedIn/>}/>
             <Route path="/facebook" exact element={<Facebook/>}/>
+            <Route path="/blog" exact element={<Blog/>}/>
           </Route>
           <Route path="/login" element={<Login></Login>}/>
           <Route path="/register" element={<Register></Register>}/>

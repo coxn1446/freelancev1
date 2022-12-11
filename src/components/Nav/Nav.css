@@ -1,0 +1,39 @@
+   
+   @media (min-width:320px) and (max-width:599px){
+ 
+   }
+   
+   @media (min-width:600px) and (max-width:1025px){
+       .itemAContainerNav {
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: repeat(2,57.75px);
+        grid-column: 3 / span 8;
+        grid-row: span 1;
+       }
+
+       .itemAANav, .itemACNav {
+           grid-column: span 4;
+           font-size: 20px;
+           margin: auto;
+       }
+
+       .itemACNav {
+           background-color: transparent;
+       }
+
+       .navButton{
+           border: none;
+           background-color: transparent;
+           font-size: 20px;
+           text-decoration: underline;
+
+       }
+ 
+   }
+   
+   @media (min-width:1026px) {
+ 
+   }
+ 
+ 

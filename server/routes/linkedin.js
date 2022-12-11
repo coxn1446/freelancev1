@@ -35,7 +35,7 @@ module.exports = (app) => {
     });
 
     router.get('/user', (req, res) => {
-      var myHeaders = new Headers();
+      const myHeaders = new Headers();
       myHeaders.append("Authorization", `Bearer ${req.session.passport.linkedin.access_token}`);
       myHeaders.append("Cookie", "lidc=\"b=TB36:s=T:r=T:a=T:p=T:g=3818:u=800:x=1:i=1669172672:t=1669229132:v=2:sig=AQHzMAi--L11-Rt61qkZhtewAIiERItX\"; bcookie=\"v=2&cb02b6b0-649a-42a1-8383-a5ab974c0957\"");
 
@@ -47,8 +47,49 @@ module.exports = (app) => {
 
       fetch("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))", requestOptions)
         .then(response => response.json())
-        .then(result => res.send(result))
+        .then(result => {res.send(result)})
         .catch(error => console.log('error', error));
       
     })
+
+    router.post('/share', (req, res) => {
+      const linkedinID = req.body.linkedinID;
+      const linkedinPost = req.body.text;
+      const endpointURL = 'https://api.linkedin.com/v2/ugcPosts';
+      const method = "POST";
+
+      const myHeaders = new Headers();
+      myHeaders.append("X-Restli-Protocol-Version", "2.0.0");
+      myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+      myHeaders.append("Authorization", `Bearer ${req.session.passport.linkedin.access_token}`);
+
+      const raw = JSON.stringify({
+        author: `urn:li:person:${linkedinID}`,
+        lifecycleState: "PUBLISHED",
+        specificContent: {
+            "com.linkedin.ugc.ShareContent": {
+                shareCommentary: {
+                    text: linkedinPost
+                },
+                shareMediaCategory: "NONE"
+            }
+        },
+        visibility: {
+            "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC"
+        }
+      });
+      
+      const requestOptions = {
+      method: method,
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+      };
+
+      fetch(endpointURL, requestOptions)
+      .then(response => response.text())
+      .then(result => res.send(result))
+      .catch(error => console.log('error', error));
+      res.redirect('http://localhost:3000?linkedinPostSent=true');
+  });
 }

@@ -1,0 +1,14 @@
+.itemBContainerBlog {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: auto;
+        height: 25px;
+        grid-column: 4 / span 8;
+        grid-row: span 1
+}
+
+.itemBA {
+        grid-column: span 2;
+        margin: auto;
+        height: 25px;
+}

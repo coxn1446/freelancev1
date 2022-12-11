@@ -107,10 +107,53 @@ module.exports = (app) => {
         redirect: 'follow'
         };
 
-
        fetch(`${endpointURL}?screen_name=${username}`, requestOptions)
        .then(response => response.json())
        .then(result => {res.send(result)})
        .catch(error => console.log('error', error));
-    })
+    });
+
+    router.post('/sendtweet', (req, res) => {
+        const endpointURL = "https://api.twitter.com/2/tweets";
+        const method = "POST";
+        const tweet = req.body.text
+        const oauthToken = req.session.passport.twitter[0]
+        const oauthTokenSecret = req.session.passport.twitter[1]
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220");
+
+        const parameters = {
+            oauth_consumer_key: consumerKey,
+            oauth_token: oauthToken,
+            oauth_nonce: nonce,
+            oauth_timestamp: timestamp,
+            oauth_signature_method: 'HMAC-SHA1',
+            oauth_version: '1.0'
+        }
+
+        // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
+        const encodedSignature = oauthSignature.generate(method, endpointURL, parameters, consumerSecret, oauthTokenSecret);
+
+        myHeaders.append("Authorization", `OAuth oauth_consumer_key=\"${consumerKey}\",oauth_token=\"${oauthToken}\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"${timestamp}\",oauth_nonce=\"${nonce}\",oauth_version=\"1.0\",oauth_signature=\"${encodedSignature}\"`);
+
+        const raw = JSON.stringify({
+            "text": `${tweet}`
+          });
+          
+        const requestOptions = {
+        method: method,
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+        };
+          
+        fetch(endpointURL, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
+        res.redirect('http://localhost:3000?tweetsent=true');
+    });
 }

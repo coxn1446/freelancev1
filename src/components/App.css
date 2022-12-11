@@ -1,11 +1,9 @@
-@font-face { font-family: Abril Fatface; src: url('../resources/Abril_Fatface/AbrilFatface-Regular.ttf')}
-
-
-*{
-    font-family: AbrilFatface-Regular
-}
-
-.app {
-background-color: rgba(208,208,201,255);
-height: 100%;
+.gridContainer {
+    grid-column: auto;
+    grid-row:auto;
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: 75px;
+    background-color: rgba(208,208,201,255);
 }

@@ -1,72 +1,230 @@
+* {
+   /* border: 1px solid red;*/
+  }
+  
+  @media (min-width:320px) and (max-width:599px){
+    .gridContainerHome {
+        grid-column: 1 / span 12;
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: auto;
+    }
+    
+    .itemBContainerHome, .itemCContainerHome, .itemDContainerHome {
+        display: grid;
+        grid-template-rows: repeat(2, 25px);
+        width: 190px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .itemBContainerHome {
+        grid-row: 3 / span 2;
+    }
+    
+    .itemCContainerHome {
+        grid-row: 5 / span 2;
+    }
+    
+    .itemDContainerHome {
+        grid-row: 7 / span 2;
+    }
+    
+    
+    .itemBAHome {
+        grid-column: 1 / span 3;
+        grid-row: 1 / span 2;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .itemBBHome {
+        grid-column: 4 / span 9;
+        grid-row: 1 / span 1;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .itemBCHome {
+        grid-column: 4 / span 9;
+        grid-row: 2 / span 1;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .itemEContainerHome {
+        grid-column: 1 / span 12;
+        grid-row: span 2;
+    
+    }
+    
+    .itemFContainerHome {
+        grid-column: 1 / span 12;
+        grid-row: span 2;
+    
+    }
+    
+    .itemGContainerHome {
+        grid-column: 1 / span 12;
+        grid-row: span 2;
+    
+    }
+
+  }
+  
+  @media (min-width:600px) and (max-width:1025px){
+
+    .gridContainerHome {
+        display: grid;
+        grid-row: span 1;
+        grid-column: span 12;
+        grid-template-rows: auto;
+    }
+    
+    .itemBContainerHome, .itemCContainerHome, .itemDContainerHome {
+        display: grid;
+        grid-template-rows: repeat(2, 25px);
+        grid-row: span 1;
+        height: 50px;
+        grid-column: span 4;
+        font-size: smaller;
+    }
+
+    .itemBContainerHome {
+        margin-left: auto;
+        margin-right: 10px;
 
 
-.gridContainerHome {
-    grid-column: 1 / span 12;
-    display:grid;
-    grid-template-columns: repeat(12,1fr);
-    grid-template-rows: auto;
-}
+    }
+    
+    .itemCContainerHome {
+        margin-left: auto;
+        margin-right: auto;
 
-.itemAContainerHome {
-    grid-column: 1 / span 12;
-    grid-row: 1 / span 2;
-}
+    }
+    .itemDContainerHome {
+        margin-left: 10px;
+        margin-right: auto;
+    }
+    
+    .itemBAHome {
+        grid-row: 1 / span 2;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .itemBBHome {
+        grid-row: 1 / span 1;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .itemBCHome {
+        grid-row: 2 / span 1;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.itemBContainerHome, .itemCContainerHome, .itemDContainerHome {
-    display: grid;
-    grid-template-columns: repeat(12,1fr);
-    grid-template-rows: repeat(2, 25px);
-}
+    .itemBContainerHome2, .itemCContainerHome2, .itemDContainerHome2 {
+        grid-column: span 4;
+        grid-row: span 1;
+        height: 35px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: transparent;
+        border: none;
+    }
 
-.itemBContainerHome {
-    grid-column: 1 / span 4;
-    grid-row: 3 span 2;
-}
+    .itemBTwitterButton {
+        background-color: transparent;
+        border: none;
+        height: 100%
+    }
+    
+    .itemEContainerHome {
+        display: grid;
+        grid-template-rows: repeat(8, 20px);
+        grid-template-columns: repeat(12, 1fr);
+        grid-column: 1 / span 12;
+        grid-row: span 4;
 
-.itemCContainerHome {
-    grid-column: 5 / span 4;
-    grid-row: 3 / span 2;
-}
+    }
 
-.itemDContainerHome {
-    grid-column: 9 / span 4;
-    grid-row: 3 / span 2;
-}
+    .itemEAHome {
+        grid-column: 2 / span 10;
+        grid-row: 1 / span 4;
+    }
+    .itemEBHome {
+        grid-column: 4 / span 6;
+        grid-row: 7 / span 2;
+    }
+    
+    .itemFContainerHome {
+        grid-column: 1 / span 12;
+        grid-row: span 2
+    
+    }
 
+  }
+  
+  @media (min-width:1026px) {
+    .gridContainerHome {
+        grid-column: 1 / span 12;
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: auto;
+    }
+    
+    .itemBContainerHome, .itemCContainerHome, .itemDContainerHome {
+        display: grid;
+        grid-template-rows: repeat(2, 25px);
+        grid-row: 3 / span 2;
+        width: 190px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .itemBAHome {
+        grid-row: 1 / span 2;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .itemBBHome {
+        grid-row: 1 / span 1;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .itemBCHome {
+        grid-row: 2 / span 1;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .itemEContainerHome {
+        grid-column: 1 / span 12;
+        grid-row: span 2;
+    
+    }
+    
+    .itemFContainerHome {
+        grid-column: 1 / span 12;
+        grid-row: span 2;
+    
+    }
+    
+    .itemGContainerHome {
+        grid-column: 1 / span 12;
+        grid-row: span 2;
+    
+    }
 
-.itemBAHome {
-    grid-column: 1 / span 3;
-    grid-row: 1 / span 2;
-    width: 100%;
-    height: 100%;
-}
+  }
 
-.itemBBHome {
-    grid-column: 4 / span 9;
-    grid-row: 1 / span 1;
-    margin: 0px;
-}
-
-.itemBCHome {
-    grid-column: 4 / span 9;
-    grid-row: 2 / span 1;
-    margin: 0px;
-}
-
-.itemEContainerHome {
-    grid-column: 1 / span 12;
-    grid-row: span 2;
-
-}
-
-.itemFContainerHome {
-    grid-column: 1 / span 12;
-    grid-row: span 2;
-
-}
-
-.itemGContainerHome {
-    grid-column: 1 / span 12;
-    grid-row: span 2;
-
-}
