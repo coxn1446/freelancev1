@@ -1,0 +1,18 @@
+   
+   @media (min-width:320px) and (max-width:599px){
+ 
+}
+
+@media (min-width:600px) and (max-width:1025px){
+    .itemAContainerBlog {
+     display:grid;
+     grid-template-columns: repeat(12,1fr);
+     grid-column: 1 / span 12;
+    }
+
+}
+
+@media (min-width:1026px) {
+
+}
+

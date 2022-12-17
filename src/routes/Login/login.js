@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Link
+  Link,
+  useSearchParams
 } from 'react-router-dom';
 
 import "./login.css"
@@ -9,6 +10,8 @@ import freelanceLogo from "../../resources/Freelance v1-logos/Freelance v1-logos
 
 
 const Login = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const status = searchParams.get("status")
   function alert () {
     window.alert('If you have forgotten your password, then your account is lost forever. I could help you, but wont. Let this be a lesson to you in accountability.')
   }
@@ -16,6 +19,9 @@ const Login = () => {
   return (
     <div className="loginPage">
       <img src={freelanceLogo} alt="freelance logo" className="logoLogin"/>
+      {
+        status ? <div style={{textAlign: 'center', color: 'red'}}>{status}</div> : null
+      }
       <form action="http://localhost:4000/auth/login" method="post" className="loginForm">
         <section>
             <input placeholder="username" className="loginInput" id="username" name="username" type="text" autoComplete="username" required autoFocus></input>

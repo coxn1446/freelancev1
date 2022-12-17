@@ -2,10 +2,11 @@ const linkedinRouter = require('./linkedin');
 const twitterRouter = require('./twitter');
 const facebookRouter = require('./facebook');
 const authRouter = require('./auth');
-const homeRouter = require('./home');
+const socialRouter = require('./social');
 const blogRouter = require('./blog')
-const commentRouter = require('./comment')
+const commentsRouter = require('./comments')
 const usersRouter = require('./users')
+const likesRouter = require('./likes')
 
 
 module.exports = (app, passport) => {
@@ -13,8 +14,9 @@ module.exports = (app, passport) => {
   twitterRouter(app);
   facebookRouter(app)
   authRouter(app, passport);
-  homeRouter(app);
+  socialRouter(app);
   blogRouter(app);
-  commentRouter(app)
+  commentsRouter(app)
   usersRouter(app)
+  likesRouter(app)
 }

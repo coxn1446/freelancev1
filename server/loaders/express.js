@@ -19,6 +19,7 @@ module.exports = (app) => {
   // Parses urlencoded bodies
   app.use(bodyParser.urlencoded({ extended: true }));
 
+
   app.use(cookieParser())
 
   app.set('trust proxy', 1);

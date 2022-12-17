@@ -2,7 +2,8 @@ import './register.css'
 import freelanceLogo from '../../resources/Freelance v1-logos/Freelance v1-logos.jpeg'
 import React from 'react';
 import {
-	Link
+	Link,
+	useSearchParams
   } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
 import {selectDisplayType1, selectDisplayType2, selectDisplayType3} from "../../store/register/register.reducer"
@@ -10,6 +11,8 @@ import {selectDisplayType1, selectDisplayType2, selectDisplayType3} from "../../
 
 
 const Register = () => {
+	const [searchParams, setSearchParams] = useSearchParams();
+	const status = searchParams.get("status")
 	const dispatch = useDispatch();
 	const displayType1 = useSelector(selectDisplayType1);
 	const displayType2 = useSelector(selectDisplayType2);
@@ -25,7 +28,10 @@ const Register = () => {
   return (
     <div className='registerPage'>
 		<img src={freelanceLogo} alt="freelance logo" className="logoregister"/>
-        <p className='registerParagraph'>Please fill in the following information in order to create a profile.</p>
+		{ status 
+			? <div style={{textAlign: 'center', color: 'red'}}>{status}</div> 
+			: <p className='registerParagraph'>Please fill in the following information in order to create a profile.</p>
+		}
         <form className='registerForm' action="http://localhost:4000/auth/register" method="post">
 			<section>
 				<input className='registerInput'placeholder='first name' id="firstname" name="firstname" type="text"></input>

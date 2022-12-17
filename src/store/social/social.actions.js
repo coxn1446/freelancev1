@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const getTwitterInfo = createAsyncThunk(
-    "home/getTwitterInfo",
+    "social/getTwitterInfo",
     async (user) => {
         let finalResult = {};
         await fetch(`http://localhost:4000/twitter/user/${user}`,{
@@ -16,7 +16,7 @@ export const getTwitterInfo = createAsyncThunk(
 );
 
 export const getLinkedinInfo = createAsyncThunk(
-    "home/getLinkedinInfo",
+    "social/getLinkedinInfo",
     async () => {
         let finalResult = {};
         await fetch("http://localhost:4000/linkedin/user", {
@@ -31,7 +31,7 @@ export const getLinkedinInfo = createAsyncThunk(
 );
 
 export const getFacebookInfo1 = createAsyncThunk(
-    "home/getFacebookInfo1",
+    "social/getFacebookInfo1",
     async (token) => {
         let finalResult = {}
         await fetch( `https://graph.facebook.com/me?access_token=${token}`, {
@@ -45,7 +45,7 @@ export const getFacebookInfo1 = createAsyncThunk(
 );
 
 export const getFacebookInfo2 = createAsyncThunk(
-    "home/getFacebookInfo2",
+    "social/getFacebookInfo2",
     async (token) => {
         let finalResult = {}
         await fetch( `https://graph.facebook.com/v15.0/me?fields=picture&access_token=${token}`, {

@@ -12,17 +12,11 @@ const Anatomy = () => {
     const fetchBlog = async () => {
        await fetch(`http://localhost:4000/blog/jobs`, {
             method: 'GET'
-        }).then(response => response.text()).then(result => {
-                const result1 = result.split("Lil Mart, but it wasn’t even the worst job I had ever had.")
-                const result2 = result1[1].split("I thought that was bad, but a year later, it got worse.")
-                const result3 = result2[1].split("might be worth it, financially speaking that is.")
-
-
-
-                paragraph1 = result1[0].concat('Lil Mart, but it wasn’t even the worst job I had ever had.')
-                paragraph2 = result2[0].concat("I thought that was bad, but a year later, it got worse.")
-                paragraph3 = result3[0].concat("might be worth it, financially speaking that is.")
-                paragraph4 = result3[1]
+        }).then(response => response.json()).then(result => {
+          paragraph1 = result.paragraph1
+          paragraph2 = result.paragraph2
+          paragraph3 = result.paragraph3
+          paragraph4 = result.paragraph4
             })
     }
 

@@ -2,7 +2,8 @@ import './CommentForm.css';
 import React from 'react';
 
 const CommentForm = (props) => {
-    const post = props.post;
+  //pulls in state data from <Blog> component
+  const post = props.post;
   
   return (
       <div className="itemDContainerBlog">

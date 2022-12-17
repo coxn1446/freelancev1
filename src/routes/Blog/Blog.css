@@ -30,6 +30,26 @@
      .itemCParagraphBlog {
         text-indent: 50px;
     }
+
+    .itemFContainerBlog {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(12, 1fr);
+        grid-row: span 3;
+        grid-column: 2 / span 10;
+    }
+
+    .itemFA {
+        text-align: center;
+        grid-row: span 1;
+        grid-column: 1 / span 12;
+    }
+
+    .itemFB {
+        text-align: center;
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 12;
+    }
      
 
  

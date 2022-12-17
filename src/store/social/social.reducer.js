@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getTwitterInfo, getLinkedinInfo, getFacebookInfo1, getFacebookInfo2} from "./home.actions"
+import {getTwitterInfo, getLinkedinInfo, getFacebookInfo1, getFacebookInfo2} from "./social.actions"
 
-const homeSlice = createSlice({
-    name: "home",
+const socialSlice = createSlice({
+    name: "social",
     initialState: {
         itemBStyle: {border: '3px solid black'},
         itemCStyle: {border: '3px solid black'},
@@ -43,7 +43,7 @@ const homeSlice = createSlice({
         selectProfile: (state, action) => {
             const expr = action.target
             switch (expr) {
-            case 'itemBContainerHome':
+            case 'itemBContainerSocial':
                 state.itemBStyle = {border: '3px solid lime'};
                 state.itemCStyle = {border: '3px solid black'};
                 state.itemDStyle = {border: '3px solid black'};
@@ -52,7 +52,7 @@ const homeSlice = createSlice({
                 state.isFacebookSelected = false;
                 state.textareaPlaceholderText = "Twitter is sensitive to a type of attack called 'CORS' or Cross-Origin Resource Sharing. Essentially, Twitter checks to make sure the server that receives the resource from their database is the same server that made the request. You typically want CORS disabled within your app to prevent foreign scripts from running. Since Twitter has disabled CORS on it's API, you are not allowed to send this tweet directly from the browser, it must go through an auxilary server I have created in the back-end.";
                 break;
-            case 'itemCContainerHome':
+            case 'itemCContainerSocial':
                 state.itemBStyle = {border: '3px solid black'};
                 state.itemCStyle = {border: '3px solid lime'};
                 state.itemDStyle = {border: '3px solid black'};
@@ -60,7 +60,7 @@ const homeSlice = createSlice({
                 state.isFacebookSelected = true;
                 state.textareaPlaceholderText = "In the wake of the 2018 Cambridge Analytics scandal, Facebook no longer allows 3rd-party apps to publish posts to User timelines. Clicking the button below brings you to Facebook's own first-party publishing tool. I can't even prepopulate their publishing tool with text from my app; Facebook doesn't want 3rd-party apps controlling dialogue on their platform anymore."
                 break;
-            case 'itemDContainerHome':
+            case 'itemDContainerSocial':
                 state.itemBStyle = {border: '3px solid black'};
                 state.itemCStyle = {border: '3px solid black'};
                 state.itemDStyle = {border: '3px solid lime'};
@@ -98,26 +98,26 @@ const homeSlice = createSlice({
     }
 })
 
-export const selectFormSubmitText = state => state.home.formSubmitText;
-export const selectItemBStyle = state => state.home.itemBStyle;
-export const selectItemCStyle = state => state.home.itemCStyle;
-export const selectItemDStyle = state => state.home.itemDStyle;
-export const selectTextareaPlaceholderText = state => state.home.textareaPlaceholderText;
-export const selectIsFacebookSelected = state => state.home.isFacebookSelected;
-export const selectFormAction = state => state.home.formAction;
+export const selectFormSubmitText = state => state.social.formSubmitText;
+export const selectItemBStyle = state => state.social.itemBStyle;
+export const selectItemCStyle = state => state.social.itemCStyle;
+export const selectItemDStyle = state => state.social.itemDStyle;
+export const selectTextareaPlaceholderText = state => state.social.textareaPlaceholderText;
+export const selectIsFacebookSelected = state => state.social.isFacebookSelected;
+export const selectFormAction = state => state.social.formAction;
 
-export const selectTwitterURL = state => state.home.twitter.profilePictureURL;
-export const selectTwitterTextOne = state => state.home.twitter.textOne;
-export const selectTwitterTextTwo = state => state.home.twitter.textTwo;
+export const selectTwitterURL = state => state.social.twitter.profilePictureURL;
+export const selectTwitterTextOne = state => state.social.twitter.textOne;
+export const selectTwitterTextTwo = state => state.social.twitter.textTwo;
 
-export const selectLinkedinURL = state => state.home.linkedin.profilePictureURL;
-export const selectLinkedinTextOne = state => state.home.linkedin.textOne;
-export const selectLinkedinTextTwo = state => state.home.linkedin.textTwo;
-export const selectLinkedinID = state => state.home.linkedin.id;
+export const selectLinkedinURL = state => state.social.linkedin.profilePictureURL;
+export const selectLinkedinTextOne = state => state.social.linkedin.textOne;
+export const selectLinkedinTextTwo = state => state.social.linkedin.textTwo;
+export const selectLinkedinID = state => state.social.linkedin.id;
 
 
-export const selectFacebookURL = state => state.home.facebook.profilePictureURL;
-export const selectFacebookTextOne = state => state.home.facebook.textOne;
-export const selectFacebookTextTwo = state => state.home.facebook.textTwo;
+export const selectFacebookURL = state => state.social.facebook.profilePictureURL;
+export const selectFacebookTextOne = state => state.social.facebook.textOne;
+export const selectFacebookTextTwo = state => state.social.facebook.textTwo;
 
-export const homeReducer = homeSlice.reducer;
+export const socialReducer = socialSlice.reducer;

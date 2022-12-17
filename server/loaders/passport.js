@@ -25,10 +25,10 @@ module.exports = (app) => {
     const query = 'SELECT id, username, password FROM users WHERE username = $1';
     db.query(query, [username], function (err, result) {
       if (err) { return cb(err); }
-      if (result.rows.length === 0) { return cb(null, false) }
+      if (result.rows.length === 0) { return cb(null, false, { message : 'No user with that username' }) }
       const user = result.rows[0];
       bcrypt.compare(password, user.password, function (err, isValid) {
-        if (err || !isValid) return cb(null, false);
+        if (err || !isValid) return cb(null, false, { message : 'Password invalid' });
         return cb(null, {
           user_id: user.id,
           username: user.username

@@ -10,20 +10,14 @@ const Collecting = () => {
     let paragraph4 = ""
 
     const fetchBlog = async () => {
-       await fetch(`http://localhost:4000/blog/collecting`, {
-            method: 'GET'
-        }).then(response => response.text()).then(result => {
-                const result1 = result.split("challenged me to collect more.")
-                const result2 = result1[1].split("my progress or concerning lack thereof.")
-                const result3 = result2[1].split("a reminder the voice in my head is wrong.")
-
-
-
-                paragraph1 = result1[0].concat('challenged me to collect more.')
-                paragraph2 = result2[0].concat("my progress or concerning lack thereof.")
-                paragraph3 = result3[0].concat("a reminder the voice in my head is wrong.")
-                paragraph4 = result3[1]
-            })
+      await fetch(`http://localhost:4000/blog/collecting`, {
+          method: 'GET'
+      }).then(response => response.json()).then(result => {
+        paragraph1 = result.paragraph1
+        paragraph2 = result.paragraph2
+        paragraph3 = result.paragraph3
+        paragraph4 = result.paragraph4
+      })
     }
 
   return(

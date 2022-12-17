@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const fetch = require("node-fetch");
 
 
 module.exports = (app) => {
 
     app.use('/home', router);
 
-    router.get('/', (req, res, next) => {
-        console.log(req.sessionID)
+    router.get('/', async (req, res, next) => {
     });
 
 } 
