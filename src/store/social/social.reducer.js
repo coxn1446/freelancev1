@@ -4,10 +4,12 @@ import {getTwitterInfo, getLinkedinInfo, getFacebookInfo1, getFacebookInfo2} fro
 const socialSlice = createSlice({
     name: "social",
     initialState: {
+        horoscope: "",
         itemBStyle: {border: '3px solid black'},
         itemCStyle: {border: '3px solid black'},
         itemDStyle: {border: '3px solid black'},
         isFacebookSelected: false,
+        maxLength: "3000",
         formAction: "",
         formSubmitText: "Select A Profile",
         textareaPlaceholderText: "Sign in to one of your profiles to start publishing content. What you get: a post on your timeline. What I get: the nominal value received from selling your personal data on the dark web.",
@@ -43,31 +45,55 @@ const socialSlice = createSlice({
         selectProfile: (state, action) => {
             const expr = action.target
             switch (expr) {
-            case 'itemBContainerSocial':
+            case 'itemDContainerSocial':
                 state.itemBStyle = {border: '3px solid lime'};
                 state.itemCStyle = {border: '3px solid black'};
                 state.itemDStyle = {border: '3px solid black'};
                 state.formSubmitText = "Provide Unsolicited Opinion on Twitter";
                 state.formAction = "http://localhost:4000/twitter/sendtweet"
                 state.isFacebookSelected = false;
-                state.textareaPlaceholderText = "Twitter is sensitive to a type of attack called 'CORS' or Cross-Origin Resource Sharing. Essentially, Twitter checks to make sure the server that receives the resource from their database is the same server that made the request. You typically want CORS disabled within your app to prevent foreign scripts from running. Since Twitter has disabled CORS on it's API, you are not allowed to send this tweet directly from the browser, it must go through an auxilary server I have created in the back-end.";
+                state.maxLength = "280"
+                state.textareaPlaceholderText = "Twitter is sensitive to a type of attack called 'CORS' or Cross-Origin Resource Sharing. To make successful calls to Twitter's API, you must create your own server and send the request from there.";
                 break;
-            case 'itemCContainerSocial':
+            case 'itemEContainerSocial':
                 state.itemBStyle = {border: '3px solid black'};
                 state.itemCStyle = {border: '3px solid lime'};
                 state.itemDStyle = {border: '3px solid black'};
                 state.formAction = ""
+                state.maxLength = "3000"
                 state.isFacebookSelected = true;
-                state.textareaPlaceholderText = "In the wake of the 2018 Cambridge Analytics scandal, Facebook no longer allows 3rd-party apps to publish posts to User timelines. Clicking the button below brings you to Facebook's own first-party publishing tool. I can't even prepopulate their publishing tool with text from my app; Facebook doesn't want 3rd-party apps controlling dialogue on their platform anymore."
+                state.textareaPlaceholderText = "In the wake of the 2018 Cambridge Analytics scandal, Facebook no longer allows 3rd-party apps to publish posts to User timelines. Facebook doesn't want 3rd-party apps controlling dialogue on their platform anymore."
                 break;
-            case 'itemDContainerSocial':
+            case 'itemFContainerSocial':
                 state.itemBStyle = {border: '3px solid black'};
                 state.itemCStyle = {border: '3px solid black'};
                 state.itemDStyle = {border: '3px solid lime'};
                 state.formAction = "http://localhost:4000/linkedin/share"
                 state.formSubmitText = "Share Thought Leadership on LinkedIn"
                 state.isFacebookSelected = false;
+                state.maxLength = "3000"
                 state.textareaPlaceholderText = `You need to apply for additional permissions through the LinkedIn developer portal in order to pull Job Titles. I have just made up your job as a placeholder, you are a ${state.linkedin.textTwo} now.`
+                break;
+            }
+        },
+        chooseHoroscope: (state) => {
+            const horoscopes = [
+                "Be mindful today. Or don't be, I'm not your boss."
+            ]
+            const index = Math.floor((Math.random() * horoscopes.length))
+            state.horoscope = horoscopes[index]
+        },
+        changeTextAreaText: (state, action) => {
+            const expr = action.target
+            switch (expr) {
+            case 'tweetsent':
+                state.textareaPlaceholderText = 'Tweet sent successfully. Send another?'
+                break;
+            case 'linkedinPostSent':
+                state.textareaPlaceholderText = 'Thought leadership disseminated. Send some more?'
+                break;
+            case 'facebookPostSent':
+                state.textareaPlaceholderText = 'Misinformation spread successfully. Send some more?'
                 break;
             }
         }
@@ -98,6 +124,8 @@ const socialSlice = createSlice({
     }
 })
 
+export const selectHoroscope = state => state.social.horoscope;
+
 export const selectFormSubmitText = state => state.social.formSubmitText;
 export const selectItemBStyle = state => state.social.itemBStyle;
 export const selectItemCStyle = state => state.social.itemCStyle;
@@ -105,6 +133,7 @@ export const selectItemDStyle = state => state.social.itemDStyle;
 export const selectTextareaPlaceholderText = state => state.social.textareaPlaceholderText;
 export const selectIsFacebookSelected = state => state.social.isFacebookSelected;
 export const selectFormAction = state => state.social.formAction;
+export const selectMaxLength = state => state.social.maxLength;
 
 export const selectTwitterURL = state => state.social.twitter.profilePictureURL;
 export const selectTwitterTextOne = state => state.social.twitter.textOne;

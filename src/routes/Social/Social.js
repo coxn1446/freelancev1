@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOutletContext, useSearchParams } from "react-router-dom";
 import Nav from "../../components/Nav/Nav"
@@ -22,9 +22,11 @@ const Social = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   //Add the other options
-  const tweetsent = searchParams.get("tweetsent")
+  const status = searchParams.get("status")
 
   //Pulls in Redux state variables
+  const horoscope = useSelector(socialState.selectHoroscope);
+
   const twitterURL = useSelector(socialState.selectTwitterURL);
   const twitterTextOne = useSelector(socialState.selectTwitterTextOne);
   const twitterTextTwo = useSelector(socialState.selectTwitterTextTwo);
@@ -39,6 +41,7 @@ const Social = () => {
   const facebookTextTwo = useSelector(socialState.selectFacebookTextTwo);
 
   const formSubmitText = useSelector(socialState.selectFormSubmitText)
+  const maxLength = useSelector(socialState.selectMaxLength)
   const formAction = useSelector(socialState.selectFormAction)
   const textareaPlaceholderText = useSelector(socialState.selectTextareaPlaceholderText)
   const isFacebookSelected = useSelector(socialState.selectIsFacebookSelected)
@@ -47,7 +50,7 @@ const Social = () => {
   const itemDStyle = useSelector(socialState.selectItemDStyle)
 
   //Allows the use of props passed in from Routes Outlet
-  const [userData] = useOutletContext();
+  const [cookieData, userData] = useOutletContext();
 
   //Redirects user to LinkedIn login page
   const linkedinSignIn = () => {
@@ -61,31 +64,31 @@ const Social = () => {
 
   //Redirects user to Facebook share dialogue
   const facebookShare = () => {
-    window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=google.com&redirect_uri=http://localhost:3000?facebookpostsent=true`)
+    window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=google.com&redirect_uri=http://localhost:3000?status=facebookPostSent`)
   }
 
   //Checks whether user is logged into social media account.
   //If they are, makes a call to the respective social API to pull user info
   //useMemo() ensures this call is only made once instead of at each component level
   useMemo(() => {
-    if(userData.passport.twitter){
-      dispatch(getTwitterInfo(userData.passport.twitter[3]))
+    if(cookieData.passport.twitter){
+      dispatch(getTwitterInfo(cookieData.passport.twitter[3]))
     }
-  }, [userData.passport.twitter]);
+  }, [cookieData.passport.twitter]);
 
   useMemo(() => {
-    if(userData.passport.linkedin){
+    if(cookieData.passport.linkedin){
       dispatch(getLinkedinInfo())
       dispatch({type: "social/linkedinChooseJob"})
     }
-  }, [userData.passport.linkedin]);
+  }, [cookieData.passport.linkedin]);
 
   useMemo(() => {
-    if(userData.passport.facebook){
-      dispatch(getFacebookInfo1(userData.passport.facebook.access_token))
-      dispatch(getFacebookInfo2(userData.passport.facebook.access_token))
+    if(cookieData.passport.facebook){
+      dispatch(getFacebookInfo1(cookieData.passport.facebook.access_token))
+      dispatch(getFacebookInfo2(cookieData.passport.facebook.access_token))
     }
-  }, [userData.passport.facebook]);
+  }, [cookieData.passport.facebook]);
 
   //Click handler for profile selection
   const handleSelectProfile = (e) => {
@@ -95,47 +98,66 @@ const Social = () => {
     })
   }
 
+  //chooses random horoscope
+  useEffect(() => {
+    dispatch({
+      type: "social/chooseHoroscope"
+    })
+  })
+
+  useEffect(() => {
+    dispatch({
+      type: "social/changeTextAreaText",
+      target: status
+    })
+  },[status])
+
+  //creates a new Date object
+  const date = new Date()
+
   return (
     <div className="gridContainerSocial">
       <Nav></Nav>
+      <p className="itemBSocial" >Hello, {userData.firstname} {userData.lastname}. Today's date is {date.toLocaleDateString()}. Your horoscope for the day is:</p>
+      <p className="itemCSocial" >"{horoscope}"</p>
       {
-        userData.passport.twitter ? 
-          <div style={itemBStyle} className="itemBContainerSocial" id="itemBContainerSocial" onClick={handleSelectProfile}>
-            <img className="itemBASocial" src={twitterURL}  id="itemBContainerSocial" onClick={handleSelectProfile}></img>
-            <p className="itemBBSocial" id="itemBContainerSocial" onClick={handleSelectProfile}>{twitterTextOne}</p>
-            <p className="itemBCSocial" id="itemBContainerSocial" onClick={handleSelectProfile}>{twitterTextTwo}</p>
+        cookieData.passport.twitter ? 
+          <div style={itemBStyle} className="itemDContainerSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>
+            <img className="itemDASocial" src={twitterURL}  id="itemDContainerSocial" onClick={handleSelectProfile}></img>
+            <p className="itemDBSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{twitterTextOne}</p>
+            <p className="itemDCSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{twitterTextTwo}</p>
           </div> :
-          <form className="itemBContainerSocial2" action="http://localhost:4000/twitter/oauth1" method="post">
-            <button className="itemBTwitterButton" type="submit"><img src={twitterSignInButton} style={{height: '100%'}}></img></button>
+          <form className="itemDContainerSocial2" action="http://localhost:4000/twitter/oauth1" method="post">
+            <button className="itemDTwitterButton" type="submit"><img src={twitterSignInButton} style={{height: '100%'}}></img></button>
           </form>
       }
       {
-        userData.passport.facebook ? 
-          <div style={itemCStyle} className="itemCContainerSocial" id="itemCContainerSocial" onClick={handleSelectProfile}>
-            <img className="itemBASocial" src={facebookURL} id="itemCContainerSocial" onClick={handleSelectProfile}></img>
-            <p className="itemBBSocial" id="itemCContainerSocial" onClick={handleSelectProfile}>{facebookTextOne}</p>
-            <p className="itemBCSocial" id="itemCContainerSocial" onClick={handleSelectProfile}>{facebookTextTwo}</p>
+        cookieData.passport.facebook ? 
+          <div style={itemCStyle} className="itemEContainerSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>
+            <img className="itemDASocial" src={facebookURL} id="itemEContainerSocial" onClick={handleSelectProfile}></img>
+            <p className="itemDBSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>{facebookTextOne}</p>
+            <p className="itemDCSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>{facebookTextTwo}</p>
           </div> :
-          <button type="submit" className="itemCContainerSocial2"><img src={facebookSignInButton} style={{height: '100%'}} onClick={facebookSignIn}></img></button>
+          <button type="submit" className="itemEContainerSocial2"><img src={facebookSignInButton} style={{height: '100%'}} onClick={facebookSignIn}></img></button>
       }
       {
-        userData.passport.linkedin ? 
-          <div style={itemDStyle} className="itemDContainerSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>
-            <img className="itemBASocial" src={linkedinURL}  id="itemDContainerSocial" onClick={handleSelectProfile}></img>
-            <p className="itemBBSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{linkedinTextOne}</p>
-            <p className="itemBCSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{linkedinTextTwo}</p>
+        cookieData.passport.linkedin ? 
+          <div style={itemDStyle} className="itemFContainerSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>
+            <img className="itemDASocial" src={linkedinURL}  id="itemFContainerSocial" onClick={handleSelectProfile}></img>
+            <p className="itemDBSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextOne}</p>
+            <p className="itemDCSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextTwo}</p>
           </div> :
-          <button className="itemDContainerSocial2" type="submit"><img src={linkedInSignInButton} style={{height: '100%'}} onClick={linkedinSignIn}></img></button>
+          <button className="itemFContainerSocial2" type="submit"><img src={linkedInSignInButton} style={{height: '100%'}} onClick={linkedinSignIn}></img></button>
       }
-      <div className="itemEContainerSocial">
+      <div className="itemGContainerSocial">
         <form style={{display: 'none'}} method='post' action={formAction} id="form1">
         </form>
-        <textarea style={{'resize': 'none', 'overflow':'scroll'}} placeholder={textareaPlaceholderText} className="itemEASocial" id='text' name="text" required form="form1"></textarea>
+        <textarea style={{'resize': 'none', 'overflow':'scroll'}} placeholder={textareaPlaceholderText} className="itemGASocial" id='text' name="text" maxLength={maxLength} required form="form1"></textarea>
         <input form="form1" type="hidden" id="linkedinID" name="linkedinID" value={linkedinID}></input>
         {
           isFacebookSelected 
-          ? <button className="itemEBsocial" type="submit" value='submit' onClick={facebookShare}>Spread Misinformation On Facebook</button>
-          : <button className="itemEBsocial" type="submit" form="form1">{formSubmitText}</button>
+          ? <button className="itemGBSocial" type="submit" value='submit' onClick={facebookShare}>Spread Misinformation On Facebook</button>
+          : <button className="itemGBSocial" type="submit" form="form1">{formSubmitText}</button>
         }
       </div>
     </div>

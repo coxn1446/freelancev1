@@ -10,6 +10,7 @@ import {
 //Public Routes
 import Login from "../routes/Login/login"
 import Register from "../routes/Register/register"
+import Privacy from "../routes/Privacy/Privacy"
 
 //This is a component which checks if you are logged in
 import PrivateRoutes from "./PrivateRoute"
@@ -40,6 +41,7 @@ function App() {
           </Route>
           <Route path="/login" element={<Login></Login>}/>
           <Route path="/register" element={<Register></Register>}/>
+          <Route path="/privacy" element={<Privacy></Privacy>}/>
         </Routes>
       </Router>
     </div>

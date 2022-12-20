@@ -27,9 +27,9 @@ const LinkedIn = () => {
         if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
         return (
-                <div>
-                    <script>{window.location.assign('http://localhost:3000')}</script>
-                </div>
+          <div>
+              <script>{window.location.assign('http://localhost:3000')}</script>
+          </div>
         )
       }}
     </Async>

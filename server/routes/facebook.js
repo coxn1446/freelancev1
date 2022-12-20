@@ -31,8 +31,4 @@ module.exports = (app) => {
         })
         .catch(error => console.log('error', error));
     });
-
-    router.post('/share', (req, res) => {
-
-    })
 }

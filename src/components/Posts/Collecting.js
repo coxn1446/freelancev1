@@ -6,7 +6,8 @@ import Async from "react-async"
 const Collecting = () => {
     let paragraph1 = ""
     let paragraph2 = ""
-    let paragraph3 = ""
+    let paragraph3b = ""
+    let paragraph3c = ""
     let paragraph4 = ""
 
     const fetchBlog = async () => {
@@ -15,7 +16,9 @@ const Collecting = () => {
       }).then(response => response.json()).then(result => {
         paragraph1 = result.paragraph1
         paragraph2 = result.paragraph2
-        paragraph3 = result.paragraph3
+        const paragraph3a = result.paragraph3.split('collection of completed projects.')
+        paragraph3b = paragraph3a[0]
+        paragraph3c = paragraph3a[1]
         paragraph4 = result.paragraph4
       })
     }
@@ -29,7 +32,7 @@ const Collecting = () => {
             <div className='itemCBlog'>
                 <p className='itemCParagraphBlog'>{paragraph1}</p>
                 <p className='itemCParagraphBlog'>{paragraph2}</p>
-                <p className='itemCParagraphBlog'>{paragraph3}</p>
+                <p className='itemCParagraphBlog'>{paragraph3b}<a href="https://coxnswebsite.surge.sh/">collection of completed projects.</a>{paragraph3c}</p>
                 <p className='itemCParagraphBlog'>{paragraph4}</p>
             </div>
         );

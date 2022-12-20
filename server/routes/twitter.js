@@ -154,6 +154,6 @@ module.exports = (app) => {
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 
-        res.redirect('http://localhost:3000?tweetsent=true');
+        res.redirect('http://localhost:3000?status=tweetsent');
     });
 }

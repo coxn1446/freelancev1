@@ -90,6 +90,6 @@ module.exports = (app) => {
       .then(response => response.text())
       .then(result => res.send(result))
       .catch(error => console.log('error', error));
-      res.redirect('http://localhost:3000?linkedinPostSent=true');
+      res.redirect('http://localhost:3000?status=linkedinPostSent');
   });
 }

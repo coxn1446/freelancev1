@@ -18,7 +18,15 @@ module.exports = (app) => {
     });
 
 
-    //pulls all comments from the database
+    //pulls all comments from the database (double check this route is being used)
+    router.get('/', async (req, res, next) => {
+        const query = 'SELECT * FROM comments';
+        const content = await db.query(query)
+        res.send(content.rows)
+    });
+
+
+    //pulls all comments from the database for a specific post
     router.get('/:blog', async (req, res, next) => {
         const query = 'SELECT * FROM comments WHERE post = $1';
         const content = await db.query(query, [req.params.blog])

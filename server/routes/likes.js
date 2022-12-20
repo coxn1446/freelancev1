@@ -29,11 +29,4 @@ module.exports = (app) => {
         res.send(result.rows)
     });
 
-    //this should go in the comment router
-    router.get('/', async (req, res, next) => {
-        const query = 'SELECT * FROM comments';
-        const content = await db.query(query)
-        res.send(content.rows)
-    });
-
 } 
