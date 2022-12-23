@@ -1,15 +1,17 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const pg = require('pg');
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const cookieParser = require('cookie-parser');
-const store = new session.MemoryStore;
+const db = require("../db/index")
 
 
 module.exports = (app) => {
 
   // Enable Cross Origin Resource Sharing to all origins by default
   app.use(cors({
-    origin: ['http://localhost:3000','http://localhost:4000'],
+    origin: ['http://localhost:3000','http://localhost:4000', 'https://freelancev1.herokuapp.com/','https://freelancev1.com'],
     credentials: true
   }));
 
@@ -18,7 +20,6 @@ module.exports = (app) => {
 
   // Parses urlencoded bodies
   app.use(bodyParser.urlencoded({ extended: true }));
-
 
   app.use(cookieParser())
 
@@ -33,9 +34,13 @@ module.exports = (app) => {
       cookie: {
         httpOnly: false,
         secure: false,
-        maxAge: 1000 * 60 * 60 * 24
+        maxAge: 1000 * 60 * 60 * 24 * 30
       },
-      store
+      store: new pgSession({
+        pool : db, // Connection pool
+        tableName : 'session'   // Use another table-name than the default "session" one
+        // Insert connect-pg-simple options here
+      }),
     })
   );
 

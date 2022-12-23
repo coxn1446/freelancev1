@@ -22,7 +22,7 @@ const Login = () => {
       {
         status ? <div style={{textAlign: 'center', color: 'red'}}>{status}</div> : null
       }
-      <form action="http://localhost:4000/auth/login" method="post" className="loginForm">
+      <form action="/auth/login" method="post" className="loginForm">
         <section>
             <input placeholder="username" className="loginInput" id="username" name="username" type="text" autoComplete="username" required autoFocus></input>
         </section>

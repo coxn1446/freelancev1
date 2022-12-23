@@ -127,7 +127,7 @@ const Social = () => {
             <p className="itemDBSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{twitterTextOne}</p>
             <p className="itemDCSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{twitterTextTwo}</p>
           </div> :
-          <form className="itemDContainerSocial2" action="http://localhost:4000/twitter/oauth1" method="post">
+          <form className="itemDContainerSocial2" action="/twitter/oauth1" method="post">
             <button className="itemDTwitterButton" type="submit"><img src={twitterSignInButton} style={{height: '100%'}}></img></button>
           </form>
       }

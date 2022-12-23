@@ -9,7 +9,7 @@ const Nav = () => {
         <Link to="/" className="itemAANav">Social</Link>
         <Link reloadDocument to="/blog" className="itemAANav">Blog</Link>
         <Link to="/contact" className="itemAANav">Contact</Link>
-        <form className="itemACNav" action="http://localhost:4000/auth/logout" method="post">
+        <form className="itemACNav" action="/auth/logout" method="post">
           <button className="navButton" type="submit" value='submit'>Logout</button>
         </form>
 

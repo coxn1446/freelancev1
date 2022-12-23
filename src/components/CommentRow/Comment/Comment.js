@@ -34,13 +34,13 @@ const Comment = (props) => {
 
   const handleLike = async () => {
     //Adds a like to the database
-    await fetch(`http://localhost:4000/likes/${commentID}`,{
+    await fetch(`/likes/${commentID}`,{
       method: 'POST',
       credentials: "include",
       headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
     
     //Edits the number of likes associated with a comment  
-    await fetch(`http://localhost:4000/comments/like/${commentID}`,{
+    await fetch(`/comments/like/${commentID}`,{
       method: 'PUT',
       credentials: "include",
       headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
@@ -51,13 +51,13 @@ const Comment = (props) => {
 
   const handleUnlike = async () => {
     //Deletes a like from the database
-    await fetch(`http://localhost:4000/likes/${commentID}`,{
+    await fetch(`/likes/${commentID}`,{
       method: 'DELETE',
       credentials: "include",
       headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
     
     //Edits the number of likes associated with a comment  
-    await fetch(`http://localhost:4000/comments/unlike/${commentID}`,{
+    await fetch(`/comments/unlike/${commentID}`,{
       method: 'PUT',
       credentials: "include",
       headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
@@ -69,7 +69,7 @@ const Comment = (props) => {
   //searches for the userId in the cookie within a "who has liked what" table. If the userID appears next to the comment
   //ID in the database, that means this user has "liked" this comment and the thumbs up sign will render as such
   const checkIsLiked = async () => {
-    await fetch(`http://localhost:4000/likes/${commentID}`,{
+    await fetch(`/likes/${commentID}`,{
           method: 'GET',
           credentials: "include",
           headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
@@ -89,7 +89,7 @@ const Comment = (props) => {
 
   //Takes commentID from props, and then deletes data associated with that ID in the database
   const handleDeleteComment = async () => {
-    await fetch(`http://localhost:4000/comments/${commentID}`,{
+    await fetch(`/comments/${commentID}`,{
       method: 'DELETE',
       headers: {
       'Access-Control-Allow-Origin': 'http://localhost:3000',}

@@ -4,7 +4,7 @@ export const getTwitterInfo = createAsyncThunk(
     "social/getTwitterInfo",
     async (user) => {
         let finalResult = {};
-        await fetch(`http://localhost:4000/twitter/user/${user}`,{
+        await fetch(`/twitter/user/${user}`,{
             method: 'GET',
             credentials: "include"
         }).then(response => response.json())
@@ -19,7 +19,7 @@ export const getLinkedinInfo = createAsyncThunk(
     "social/getLinkedinInfo",
     async () => {
         let finalResult = {};
-        await fetch("http://localhost:4000/linkedin/user", {
+        await fetch("/linkedin/user", {
             method: 'GET',
             credentials: "include"
         }).then(response => response.json())

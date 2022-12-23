@@ -41,7 +41,7 @@ const Blog = () => {
       ? <CommentForm post={post}></CommentForm>
       : <div className="itemFContainerBlog">
           <p className="itemFA">I have been working on these short stories for a few years, fairly confident that whole time I was never going to share them with anyone. I wrote them just because I like to write. There are a few more I might publish; if you'd like to be notified when/if I do, please leave your email below.</p>
-          <form className="itemFB" method='POST' action="http://localhost:4000/users/subscribe?_method=PUT" id="form3">
+          <form className="itemFB" method='POST' action="/users/subscribe?_method=PUT" id="form3">
             <input form="form3" type="email" id="emailSubscribeBlog" name="emailSubscribeBlog" required></input>
             <button type="submit" form="form3">Subscribe</button>
         </form>

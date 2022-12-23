@@ -32,7 +32,7 @@ const Register = () => {
 			? <div style={{textAlign: 'center', color: 'red'}}>{status}</div> 
 			: <p className='registerParagraph'>Please fill in the following information in order to create a profile.</p>
 		}
-        <form className='registerForm' action="http://localhost:4000/auth/register" method="post">
+        <form className='registerForm' action="/auth/register" method="post">
 			<section>
 				<input className='registerInput'placeholder='first name' id="firstname" name="firstname" type="text"></input>
 			</section>

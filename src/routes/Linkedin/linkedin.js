@@ -11,7 +11,7 @@ const LinkedIn = () => {
     const code = searchParams.get("code")
 
     const linkedinOAuth3 = async () => {
-        await fetch(`http://localhost:4000/linkedin/oauth3/${code}`,{
+        await fetch(`/linkedin/oauth3/${code}`,{
             method: 'POST',
             credentials: "include",
             headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}

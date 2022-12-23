@@ -11,7 +11,7 @@ const Facebook = () => {
     const code = searchParams.get("code")
 
     const facebookOAuth2 = async () => {
-        await fetch(`http://localhost:4000/facebook/oauth2/${code}`,{
+        await fetch(`/facebook/oauth2/${code}`,{
             method: 'GET',
             credentials: "include",
             headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}

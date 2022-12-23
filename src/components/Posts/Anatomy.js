@@ -12,7 +12,7 @@ const Anatomy = () => {
   let paragraph6 = ""
 
   const fetchBlog = async () => {
-      await fetch(`http://localhost:4000/blog/anatomy`, {
+      await fetch(`/blog/anatomy`, {
           method: 'GET'
       }).then(response => response.json()).then(result => {
         paragraph1 = result.paragraph1

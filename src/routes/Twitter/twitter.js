@@ -12,7 +12,7 @@ const Twitter = () => {
     const oauthVerifier = searchParams.get("oauth_verifier")
 
     const twitterOAuth3 = async () => {
-        await fetch(`http://localhost:4000/twitter/oauth3/${oauthToken}/${oauthVerifier}`,{
+        await fetch(`/twitter/oauth3/${oauthToken}/${oauthVerifier}`,{
             method: 'POST',
             credentials: "include",
             headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
