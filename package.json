@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "export NODE_ENV=development && react-scripts start",
-    "server": "node server/index.js",
+    "server": "nodemon dot/env.config server/index",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
