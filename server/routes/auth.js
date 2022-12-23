@@ -15,7 +15,7 @@ module.exports = (app, passport) => {
       "SELECT username FROM users WHERE username = $1", [req.body.username]
     )
     if( Object(result.rows).length !== 0){
-      res.redirect(`http://localhost:3000/register?status=Username has already been chosen`)
+      res.redirect(`https://freelancev1.herokuapp.com/register?status=Username has already been chosen`)
     }
     //this code searches through all available photos in the picsum database, 
     //pushes it into a single array here and then chooses one photo at random
@@ -44,10 +44,10 @@ module.exports = (app, passport) => {
               "INSERT INTO users (username, password, firstname, lastname, phonenumber, profilepic) VALUES($1, $2, $3, $4, $5, $6)", 
               [req.body.username, hashedPassword, req.body.firstname, req.body.lastname, req.body.phonenumber, profilePicURL]
           )
-          res.redirect('http://localhost:3000/login')
+          res.redirect('https://freelancev1.herokuapp.com/login')
       } catch (err){
           console.error(err.message)
-          res.redirect('http://localhost:3000/register')
+          res.redirect('https://freelancev1.herokuapp.com/register')
       }
     }
   });
@@ -58,12 +58,12 @@ module.exports = (app, passport) => {
       if (err) { return next(err); }
       // Redirect if it fails
       if (!user) { 
-        return res.redirect(`http://localhost:3000/login?status=${info.message}`); 
+        return res.redirect(`https://freelancev1.herokuapp.com/login?status=${info.message}`); 
       }
       req.logIn(user, function(err) {
         if (err) { return next(err); }
         // Redirect if it succeeds
-        return res.redirect('http://localhost:3000');
+        return res.redirect('https://freelancev1.herokuapp.com');
       });
     })(req, res, next);
   });
@@ -77,7 +77,7 @@ module.exports = (app, passport) => {
   router.post('/logout', function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
-      res.redirect('http://localhost:3000/login');
+      res.redirect('https://freelancev1.herokuapp.com/login');
     });
   });
 
