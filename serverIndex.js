@@ -13,6 +13,9 @@ async function startServer() {
   loaders(app);
 
   app.use('/', express.static(path.join(__dirname, 'build')))
+  app.use('/login', express.static(path.join(__dirname, 'build')))
+  app.use('/register', express.static(path.join(__dirname, 'build')))
+  app.use('/blog', express.static(path.join(__dirname, 'build')))
 
   // Start server
   app.listen(PORT, () => {
