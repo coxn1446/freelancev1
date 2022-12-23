@@ -1,6 +1,5 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const pg = require('pg');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const cookieParser = require('cookie-parser');

@@ -4,7 +4,7 @@ const app = express();
 
 const loaders = require('./loaders');
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 80
 
 async function startServer() {
 
