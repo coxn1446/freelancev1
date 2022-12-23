@@ -5,7 +5,6 @@ const pgSession = require('connect-pg-simple')(session);
 const cookieParser = require('cookie-parser');
 const db = require("../db/index")
 
-
 module.exports = (app) => {
 
   // Enable Cross Origin Resource Sharing to all origins by default

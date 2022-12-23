@@ -1,9 +1,7 @@
 const Pool = require('pg').Pool
 
-console.log(process.env.NODE_ENV)
-
   const pool = (() => {
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.REACT_APP_NODE_ENV === 'development') {
         return new Pool({
           user: process.env.REACT_APP_DB_user,
           host: process.env.REACT_APP_DB_host,
