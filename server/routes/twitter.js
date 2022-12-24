@@ -32,7 +32,7 @@ module.exports = (app) => {
 
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `OAuth oauth_consumer_key=\"${consumerKey}\",oauth_token=\"${token}\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"${timestamp}\",oauth_nonce=\"${nonce}\",oauth_version=\"1.0\",oauth_signature=\"${encodedSignature}\"`);
-        myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220; lang=en");
+        myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220, lang=en");
         
         var requestOptions = {
           method: method,
@@ -41,15 +41,8 @@ module.exports = (app) => {
         };
         
         fetch(endpointURL, requestOptions)
-          .then(response => {
-              console.log(response)
-              response.text()
-            })
-          .then(result => {
-              console.log(result)
-              res.redirect(`https://api.twitter.com/oauth/authorize?${result}`)
-            }
-              )
+          .then(response => response.text())
+          .then(result => res.redirect(`https://api.twitter.com/oauth/authorize?${result}`))
           .catch(error => console.log('error', error));
 
     })
