@@ -9,7 +9,7 @@ module.exports = (app) => {
 
   // Enable Cross Origin Resource Sharing to all origins by default
   app.use(cors({
-    origin: ['http://localhost:3000','http://localhost:4000', 'https://freelancev1.herokuapp.com/','https://freelancev1.com'],
+    origin: ['http://localhost:3000','http://localhost:80','https://freelancev1.herokuapp.com/','https://freelancev1.com'],
     credentials: true
   }));
 

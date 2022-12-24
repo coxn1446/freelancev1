@@ -26,6 +26,7 @@ module.exports = (app) => {
             oauth_signature_method: 'HMAC-SHA1',
             oauth_version: '1.0'
         }
+
         // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
         const encodedSignature = oauthSignature.generate(method, endpointURL, parameters, consumerSecret, tokenSecret)
 
