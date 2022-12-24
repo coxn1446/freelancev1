@@ -40,7 +40,7 @@ module.exports = (app) => {
           redirect: 'follow',
         };
 
-        fetch(`${endpointURL}?oauth_consumer_key=${consumerKey}&oauth_signature_method=HMAC-SHA1&oauth_timestamp=${timestamp}&oauth_nonce=${none}&oauth_version=1.0&oauth_signature=${encodedSignature}`, requestOptions)
+        fetch(`${endpointURL}?oauth_consumer_key=${consumerKey}&oauth_signature_method=HMAC-SHA1&oauth_timestamp=${timestamp}&oauth_nonce=${nonce}&oauth_version=1.0&oauth_signature=${encodedSignature}`, requestOptions)
           .then(response => response.text())
           .then(result => res.redirect(`https://api.twitter.com/oauth/authorize?${result}`))
           .catch(error => console.log('error', error));
