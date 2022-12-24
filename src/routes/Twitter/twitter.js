@@ -27,11 +27,20 @@ const Twitter = () => {
       {({ data, error, isPending }) => {
         if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
-        return (
-                <div>
-                    <script>{window.location.assign('http://localhost:3000')}</script>
-                </div>
-        )
+        if(process.env.REACT_APP_NODE_ENV === "development"){
+          return (
+            <div>
+                <script>{window.location.assign('http://localhost:3000')}</script>
+            </div>
+    )
+        }
+        if(process.env.REACT_APP_NODE_ENV === "production"){
+          return (
+            <div>
+                <script>{window.location.assign('http://www.freelancev1.com')}</script>
+            </div>
+          )
+        }
       }}
     </Async>
   )
