@@ -19,7 +19,7 @@ module.exports = (app, passport) => {
         res.redirect(`/register?status=Username has already been chosen`)
       }
       if(process.env.REACT_APP_NODE_ENV === "production"){
-      res.redirect(`http://freelancev1.com/register?status=Username has already been chosen`)
+      res.redirect(`http://www.freelancev1.com/register?status=Username has already been chosen`)
       }
     }
     //this code searches through all available photos in the picsum database, 
@@ -53,7 +53,7 @@ module.exports = (app, passport) => {
             res.redirect('/login')
           }
           if(process.env.REACT_APP_NODE_ENV === "production"){
-            res.redirect(`http://freelancev1.com/login`)
+            res.redirect(`http://www.freelancev1.com/login`)
           }
       } catch (err){
           console.error(err.message)
@@ -61,7 +61,7 @@ module.exports = (app, passport) => {
             res.redirect('/register')
           }
           if(process.env.REACT_APP_NODE_ENV === "production"){
-            res.redirect('http://freelancev1.com/register')
+            res.redirect('http://www.freelancev1.com/register')
           }
       }
     }
@@ -77,7 +77,7 @@ module.exports = (app, passport) => {
           return res.redirect(`/login?status=${info.message}`)
         }
         if(process.env.REACT_APP_NODE_ENV === "production"){
-          return res.redirect(`http://freelancev1.com/login?status=${info.message}`); 
+          return res.redirect(`http://www.freelancev1.com/login?status=${info.message}`); 
         }
       }
       req.logIn(user, function(err) {
@@ -87,7 +87,7 @@ module.exports = (app, passport) => {
           return res.redirect(`/`)
         }
         if(process.env.REACT_APP_NODE_ENV === "production"){
-          return res.redirect('http://freelancev1.com');
+          return res.redirect('http://www.freelancev1.com');
         }
       });
     })(req, res, next);
@@ -107,7 +107,7 @@ module.exports = (app, passport) => {
         res.redirect('/login');
       }
       if(process.env.REACT_APP_NODE_ENV === "production"){
-      res.redirect('http://freelancev1.com/login')
+      res.redirect('http://www.freelancev1.com/login')
       };
     });
   });

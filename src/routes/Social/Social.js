@@ -65,10 +65,10 @@ const Social = () => {
   //Redirects user to Facebook share dialogue
   const facebookShare = () => {
     if(process.env.REACT_APP_NODE_ENV === "development"){
-      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=http://freelancev1.com/&redirect_uri=http://localhost:3000?status=facebookPostSent`)
+      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=http://www.freelancev1.com/&redirect_uri=http://localhost:3000?status=facebookPostSent`)
     }
     if(process.env.REACT_APP_NODE_ENV === "production"){
-      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=http://freelancev1.com/&redirect_uri=hhttp://freelancev1.com?status=facebookPostSent`)
+      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=http://www.freelancev1.com/&redirect_uhttp://www.freelancev1.com.com?status=facebookPostSent`)
     }
   }
 

@@ -17,7 +17,7 @@ module.exports = (app) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "x-www-form-urlencoded");
-        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "http://freelancev1.com/"]);
+        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "http://www.freelancev1.com/"]);
 
         const requestOptions = {
         method: method,
@@ -60,7 +60,7 @@ module.exports = (app) => {
 
       const myHeaders = new Headers();
       myHeaders.append("X-Restli-Protocol-Version", "2.0.0");
-      myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "http://freelancev1.com/"]);
+      myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "http://www.freelancev1.com/"]);
       myHeaders.append("Authorization", `Bearer ${req.session.passport.linkedin.access_token}`);
 
       const raw = JSON.stringify({
@@ -94,7 +94,7 @@ module.exports = (app) => {
         res.redirect('/?status=linkedinPostSent');
       }
       if(process.env.REACT_APP_NODE_ENV === "production"){
-        res.redirect('http://freelancev1.com/?status=linkedinPostSent');
+        res.redirect('http://www.freelancev1.com/?status=linkedinPostSent');
       }
   });
 }

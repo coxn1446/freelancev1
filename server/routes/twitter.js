@@ -66,7 +66,7 @@ module.exports = (app) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220");
-        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "http://freelancev1.com/"]);
+        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "http://www.freelancev1.com/"]);
 
         const requestOptions = {
         method: 'POST',
@@ -159,7 +159,7 @@ module.exports = (app) => {
             res.redirect('/?status=tweetsent');
         }
         if(process.env.REACT_APP_NODE_ENV === "production"){
-            res.redirect('http://freelancev1.com/?status=tweetsent');
+            res.redirect('http://www.freelancev1.com/?status=tweetsent');
         }
 
     });
