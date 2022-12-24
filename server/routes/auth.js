@@ -76,7 +76,7 @@ module.exports = (app, passport) => {
         if(process.env.REACT_APP_NODE_ENV === "development"){
           return res.redirect(`/login?status=${info.message}`)
         }
-        if(process.env.REACT_APP_NODE_ENV === "development"){
+        if(process.env.REACT_APP_NODE_ENV === "production"){
           return res.redirect(`https://freelancev1.herokuapp.com/login?status=${info.message}`); 
         }
       }
@@ -86,7 +86,7 @@ module.exports = (app, passport) => {
         if(process.env.REACT_APP_NODE_ENV === "development"){
           return res.redirect(`/`)
         }
-        if(process.env.REACT_APP_NODE_ENV === "development"){
+        if(process.env.REACT_APP_NODE_ENV === "production"){
           return res.redirect('https://freelancev1.herokuapp.com');
         }
       });
