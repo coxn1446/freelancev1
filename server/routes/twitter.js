@@ -31,16 +31,16 @@ module.exports = (app) => {
         const encodedSignature = oauthSignature.generate(method, endpointURL, parameters, consumerSecret, tokenSecret)
 
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", `OAuth oauth_consumer_key=\"${consumerKey}\",oauth_token=\"${token}\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"${timestamp}\",oauth_nonce=\"${nonce}\",oauth_version=\"1.0\",oauth_signature=\"${encodedSignature}\"`);
-        //myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220, lang=en");
+        //myHeaders.append("Authorization", `OAuth oauth_consumer_key=\"${consumerKey}\",oauth_token=\"${token}\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"${timestamp}\",oauth_nonce=\"${nonce}\",oauth_version=\"1.0\",oauth_signature=\"${encodedSignature}\"`);
+        myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220, lang=en");
         
         var requestOptions = {
           method: method,
           headers: myHeaders,
           redirect: 'follow',
         };
-        
-        fetch(endpointURL, requestOptions)
+
+        fetch(`${endpointURL}?oauth_consumer_key=${consumerKey}&oauth_signature_method=HMAC-SHA1&oauth_timestamp=${timestamp}&oauth_nonce=${none}&oauth_version=1.0&oauth_signature=${encodedSignature}`, requestOptions)
           .then(response => response.text())
           .then(result => res.redirect(`https://api.twitter.com/oauth/authorize?${result}`))
           .catch(error => console.log('error', error));
