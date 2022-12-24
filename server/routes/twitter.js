@@ -33,6 +33,8 @@ module.exports = (app) => {
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `OAuth oauth_consumer_key=\"${consumerKey}\",oauth_token=\"${token}\",oauth_signature_method=\"HMAC-SHA1\",oauth_timestamp=\"${timestamp}\",oauth_nonce=\"${nonce}\",oauth_version=\"1.0\",oauth_signature=\"${encodedSignature}\"`);
         myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220; lang=en");
+
+        console.log(myHeaders)
         
         var requestOptions = {
           method: method,

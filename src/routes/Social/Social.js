@@ -15,12 +15,6 @@ import "./Social.css"
 
 
 const Social = () => {
-
-  console.log(process.env.REACT_APP_TWITTER_APIKEY);
-  console.log(process.env.REACT_APP_TWITTER_ACESSTOKEN)
-  console.log(process.env.REACT_APP_TWITTER_APIKEYSECRET);
-  console.log(process.env.REACT_APP_TWITTER_ACCESSTOKENSECRET);
-  console.log(process.env.REACT_APP_TWITTER_NONCE);
   //Creates useDispatch instance
   const dispatch = useDispatch()
 

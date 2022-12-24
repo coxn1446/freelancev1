@@ -20,6 +20,7 @@
     "nodemon": "^2.0.20",
     "oauth": "^0.10.0",
     "oauth-signature": "^1.5.0",
+    "openssl": "^2.0.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "pg": "^8.8.0",
@@ -35,7 +36,7 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "node serverIndex.js",
-    "build": "react-scripts build", 
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
