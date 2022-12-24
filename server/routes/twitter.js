@@ -65,7 +65,7 @@ module.exports = (app) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Cookie", "guest_id=v1%3A166524611693534220");
-        myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "https://freelancev1.herokuapp.com/"]);
 
         const requestOptions = {
         method: 'POST',
@@ -154,6 +154,12 @@ module.exports = (app) => {
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 
-        res.redirect('http://localhost:3000?status=tweetsent');
+        if(process.env.REACT_APP_NODE_ENV === "development"){
+            res.redirect('/?status=tweetsent');
+        }
+        if(process.env.REACT_APP_NODE_ENV === "production"){
+            res.redirect('https://freelancev1.herokuapp.com/?status=tweetsent');
+        }
+
     });
 }

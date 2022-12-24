@@ -14,7 +14,12 @@ module.exports = (app) => {
         const date = new Date()
         const query = "INSERT INTO comments (user_id, date, post, text, hour) VALUES($1, $2, $3, $4, $5)"
         await db.query(query, [req.session.passport.user.id, date.toDateString(), req.body.postBlog, req.body.commentBlog, date.toTimeString()])
-        res.redirect("http://localhost:3000/blog")
+        if(process.env.REACT_APP_NODE_ENV === "development"){
+            res.redirect("/blog")
+        }
+        if(process.env.REACT_APP_NODE_ENV === "production"){
+            res.redirect("https://freelancev1.herokuapp.com/blog")
+        }
     });
 
 

@@ -64,7 +64,12 @@ const Social = () => {
 
   //Redirects user to Facebook share dialogue
   const facebookShare = () => {
-    window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=google.com&redirect_uri=http://localhost:3000?status=facebookPostSent`)
+    if(process.env.REACT_APP_NODE_ENV === "development"){
+      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=https://freelancev1.herokuapp.com/&redirect_uri=http://localhost:3000?status=facebookPostSent`)
+    }
+    if(process.env.REACT_APP_NODE_ENV === "production"){
+      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=https://freelancev1.herokuapp.com/&redirect_uri=https://freelancev1.herokuapp.com/?status=facebookPostSent`)
+    }
   }
 
   //Checks whether user is logged into social media account.

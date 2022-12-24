@@ -17,7 +17,7 @@ module.exports = (app) => {
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "x-www-form-urlencoded");
-        myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "https://freelancev1.herokuapp.com/"]);
 
         const requestOptions = {
         method: method,
@@ -60,7 +60,7 @@ module.exports = (app) => {
 
       const myHeaders = new Headers();
       myHeaders.append("X-Restli-Protocol-Version", "2.0.0");
-      myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+      myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000', "https://freelancev1.herokuapp.com/"]);
       myHeaders.append("Authorization", `Bearer ${req.session.passport.linkedin.access_token}`);
 
       const raw = JSON.stringify({
@@ -90,6 +90,11 @@ module.exports = (app) => {
       .then(response => response.text())
       .then(result => res.send(result))
       .catch(error => console.log('error', error));
-      res.redirect('http://localhost:3000?status=linkedinPostSent');
+      if(process.env.REACT_APP_NODE_ENV === "development"){
+        res.redirect('/?status=linkedinPostSent');
+      }
+      if(process.env.REACT_APP_NODE_ENV === "production"){
+        res.redirect('https://freelancev1.herokuapp.com/?status=linkedinPostSent');
+      }
   });
 }

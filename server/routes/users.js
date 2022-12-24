@@ -24,7 +24,12 @@ module.exports = (app) => {
 
         const query = 'UPDATE users SET email = $1 WHERE id = $2';
         await db.query(query,[email, userID])
-        res.redirect('http://localhost:3000/blog')
+        if(process.env.REACT_APP_NODE_ENV === "development"){
+            res.redirect('/blog')
+        }
+        if(process.env.REACT_APP_NODE_ENV === "production"){
+            res.redirect('https://freelancev1.herokuapp.com/blog')
+        }
 
     });
 
