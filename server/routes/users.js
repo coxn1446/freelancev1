@@ -28,7 +28,7 @@ module.exports = (app) => {
             res.redirect('/blog')
         }
         if(process.env.REACT_APP_NODE_ENV === "production"){
-            res.redirect('https://freelancev1.herokuapp.com/blog')
+            res.redirect('http://freelancev1.com/blog')
         }
 
     });
