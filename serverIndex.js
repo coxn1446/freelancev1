@@ -9,7 +9,7 @@ const fs = require('fs')
 const loaders = require('./server/loaders');
 
 const httpsPORT = process.env.PORT || 443;
-//const httpPORT = process.env.PORT || 80;
+const httpPORT = process.env.PORT || 80;
 //const hostname = 'freelancev1.com'
 
 /*const httpsOptions = {
@@ -26,24 +26,21 @@ async function startServer() {
   loaders(app);
 
   if(process.env.REACT_APP_NODE_ENV === "production"){
-  app.use((req, res, next) => {
-    if(req.protocol === 'http'){
-      console.log(`https://${req.headers.host}${req.url}`)
-      res.redirect(301, `https://${req.headers.host}${req.url}`)
-    }
+    http.get('*', function(req, res) {  
+      res.redirect('https://' + req.headers.host + req.url);
   })
-  
-  app.use('/', express.static(path.join(__dirname, 'build')))
-  app.use('/login', express.static(path.join(__dirname, 'build')))
-  app.use('/register', express.static(path.join(__dirname, 'build')))
-  app.use('/blog', express.static(path.join(__dirname, 'build')))
-  app.use('/contact', express.static(path.join(__dirname, 'build')))
-  app.use('/privacy', express.static(path.join(__dirname, 'build')))
-  app.use('/twitter', express.static(path.join(__dirname, 'build')))
-  app.use('/facebook', express.static(path.join(__dirname, 'build')))
-  app.use('/linkedin', express.static(path.join(__dirname, 'build')))
 
-  app.listen(httpsPORT)
+    app.use('/', express.static(path.join(__dirname, 'build')))
+    app.use('/login', express.static(path.join(__dirname, 'build')))
+    app.use('/register', express.static(path.join(__dirname, 'build')))
+    app.use('/blog', express.static(path.join(__dirname, 'build')))
+    app.use('/contact', express.static(path.join(__dirname, 'build')))
+    app.use('/privacy', express.static(path.join(__dirname, 'build')))
+    app.use('/twitter', express.static(path.join(__dirname, 'build')))
+    app.use('/facebook', express.static(path.join(__dirname, 'build')))
+    app.use('/linkedin', express.static(path.join(__dirname, 'build')))
+
+    app.listen(httpsPORT)
   }
 
   /*if(process.env.REACT_APP_NODE_ENV === 'development'){
@@ -51,6 +48,10 @@ async function startServer() {
       console.log(`Server is running on ${httpPORT}`)
     });
   }*/
+
+  if(process.env.REACT_APP_NODE_ENV === "development"){
+  app.listen(httpPORT)
+  }
 
 }
 
