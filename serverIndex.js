@@ -28,9 +28,10 @@ async function startServer() {
   if(process.env.REACT_APP_NODE_ENV === "production"){
   app.use((req, res, next) => {
     if(req.protocol === 'http'){
+      console.log(`https://${req.headers.host}${req.url}`)
       res.redirect(301, `https://${req.headers.host}${req.url}`)
+      next()
     }
-    next()
   })
   app.use('/', express.static(path.join(__dirname, 'build')))
   app.use('/login', express.static(path.join(__dirname, 'build')))
