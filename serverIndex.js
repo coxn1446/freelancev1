@@ -26,7 +26,7 @@ async function startServer() {
   loaders(app);
 
   if(process.env.REACT_APP_NODE_ENV === "production"){
-    http.get('*', function(req, res) {  
+    app.get('*', function(req, res) {  
       res.redirect('https://' + req.headers.host + req.url);
   })
 
