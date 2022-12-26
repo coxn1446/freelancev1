@@ -32,9 +32,6 @@ async function startServer() {
     }
     next()
   })
-  }
-
-  if(process.env.REACT_APP_NODE_ENV === "production"){
   app.use('/', express.static(path.join(__dirname, 'build')))
   app.use('/login', express.static(path.join(__dirname, 'build')))
   app.use('/register', express.static(path.join(__dirname, 'build')))
@@ -44,11 +41,10 @@ async function startServer() {
   app.use('/twitter', express.static(path.join(__dirname, 'build')))
   app.use('/facebook', express.static(path.join(__dirname, 'build')))
   app.use('/linkedin', express.static(path.join(__dirname, 'build')))
-  }
 
-  if(process.env.REACT_APP_NODE_ENV === "production"){
   httpsServer.listen(httpsPORT)
   }
+
   if(process.env.REACT_APP_NODE_ENV === 'development'){
     httpServer.listen(httpPORT, function(){
       console.log(`Server is running on ${httpPORT}`)
