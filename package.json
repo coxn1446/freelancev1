@@ -15,6 +15,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
     "method-override": "^3.0.0",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.20",
@@ -35,7 +37,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "node serverIndex.js",
+    "server": "nodemon -r dotenv/config serverIndex.js",
+    "serverProduction": "node serverIndex.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
