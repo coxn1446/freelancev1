@@ -26,8 +26,8 @@ async function startServer() {
   loaders(app);
 
   if(process.env.REACT_APP_NODE_ENV === "production"){
-    app.get('*', function(req, res) {  
-      res.redirect('https://' + req.headers.host + req.url);
+    app.use((req, res, next) => {
+      req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
   })
 
     app.use('/', express.static(path.join(__dirname, 'build')))

@@ -21,7 +21,7 @@ module.exports = (app) => {
 
   app.use(cookieParser())
 
-  app.set('trust proxy', 1);
+  app.enable('trust proxy');
 
   // Creates a session
   app.use(
