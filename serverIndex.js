@@ -30,9 +30,9 @@ async function startServer() {
     if(req.protocol === 'http'){
       console.log(`https://${req.headers.host}${req.url}`)
       res.redirect(301, `https://${req.headers.host}${req.url}`)
-      next()
     }
   })
+  
   app.use('/', express.static(path.join(__dirname, 'build')))
   app.use('/login', express.static(path.join(__dirname, 'build')))
   app.use('/register', express.static(path.join(__dirname, 'build')))
