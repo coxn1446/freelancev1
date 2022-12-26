@@ -47,7 +47,7 @@ async function startServer() {
   }
 
   if(process.env.REACT_APP_NODE_ENV === "production"){
-  httpsServer.listen(httpsPORT, hostname)
+  httpsServer.listen(httpsPORT)
   }
   if(process.env.REACT_APP_NODE_ENV === 'development'){
     httpServer.listen(httpPORT, function(){
