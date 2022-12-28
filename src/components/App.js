@@ -22,6 +22,7 @@ import LinkedIn from "../routes/Linkedin/linkedin"
 import Facebook from "../routes/Facebook/facebook"
 import Blog from "../routes/Blog/Blog"
 import Contact from "../routes/Contact/Contact"
+import Ads from "../routes/Ads/Ads"
 
 
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/facebook" exact element={<Facebook/>}/>
             <Route path="/blog" exact element={<Blog/>}/>
             <Route path="/contact" exact element={<Contact/>}/>
+            <Route path="/ads" exact element={<Ads/>}/>
           </Route>
           <Route path="/login" element={<Login></Login>}/>
           <Route path="/register" element={<Register></Register>}/>

@@ -1,8 +1,4 @@
-* {
-   /* border: 1px solid red;*/
-  }
-  
-  @media (min-width:320px) and (max-width:599px){
+    @media (min-width:320px) and (max-width:599px){
     .gridContainerSocial {
         grid-column: 1 / span 12;
         display:grid;
@@ -75,11 +71,10 @@
   }
   
   @media (min-width:600px) and (max-width:1025px){
-
     .gridContainerSocial {
-        display: grid;
-        grid-row: span 1;
-        grid-column: span 12;
+        grid-column: 1 / span 12;
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
         grid-template-rows: auto;
     }
 

@@ -1,7 +1,8 @@
 import React, {useMemo, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useOutletContext, useSearchParams } from "react-router-dom";
-import Nav from "../../components/Nav/Nav"
+import Nav from "../../components/Nav/Nav";
+import Ad from "../../components/Ad/Ad"
 
 import linkedInSignInButton from "../../resources/linkedinsigninbutton.png"
 import facebookSignInButton from "../../resources/facebooksigninbutton.png"
@@ -65,10 +66,10 @@ const Social = () => {
   //Redirects user to Facebook share dialogue
   const facebookShare = () => {
     if(process.env.REACT_APP_NODE_ENV === "development"){
-      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=http://www.freelancev1.com/&redirect_uri=http://localhost:3000?status=facebookPostSent`)
+      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=https://www.freelancev1.comm/&redirect_uri=http://localhost:3000?status=facebookPostSent`)
     }
     if(process.env.REACT_APP_NODE_ENV === "production"){
-      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=http://www.freelancev1.com/&redirect_uhttp://www.freelancev1.com.com?status=facebookPostSent`)
+      window.location.assign(`https://www.facebook.com/dialog/feed?app_id=1552095471881422&display=page&link=https://www.freelancev1.comm/&redirect_https://www.freelancev1.commm.com?status=facebookPostSent`)
     }
   }
 
@@ -123,6 +124,7 @@ const Social = () => {
   return (
     <div className="gridContainerSocial">
       <Nav></Nav>
+      <Ad></Ad>
       <p className="itemBSocial" >Hello, {userData.firstname} {userData.lastname}. Today's date is {date.toLocaleDateString()}. Your horoscope for the day is:</p>
       <p className="itemCSocial" >"{horoscope}"</p>
       {

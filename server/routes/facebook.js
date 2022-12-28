@@ -16,7 +16,7 @@ module.exports = (app) => {
         const method = "GET";
 
         const myHeaders = new Headers();
-        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000',"http://www.freelancev1.com/"]);
+        myHeaders.append('Access-Control-Allow-Origin', ['http://localhost:3000',"https://www.freelancev1.com/"]);
 
         const requestOptions = {
         method: method,

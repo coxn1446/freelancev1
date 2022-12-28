@@ -37,7 +37,7 @@ const Twitter = () => {
         if(process.env.REACT_APP_NODE_ENV === "production"){
           return (
             <div>
-                <script>{window.location.assign('http://www.freelancev1.com')}</script>
+                <script>{window.location.assign('https://www.freelancev1.com')}</script>
             </div>
           )
         }

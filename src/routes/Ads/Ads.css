@@ -1,0 +1,66 @@
+
+@media (min-width:320px) and (max-width:599px){
+
+    .gridContainerAds {
+        display: grid;
+        grid-template-rows: repeat(1, 1fr);
+        grid-column: span 12;
+        grid-row: span 1;
+    }
+
+}
+   
+@media (min-width:600px) and (max-width:1025px){
+
+    .gridContainerAds {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-column: 1 / span 12;
+        grid-row: auto;
+    }
+
+    .paragraphAds {
+        grid-column: 3 / span 8;
+        grid-row: span 1;
+        margin: 5px;
+        text-align: center;
+    }
+
+    .formTitleAds{
+        grid-column: 1 / span 12;
+    }
+
+    .sectionAds {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+
+    .inputAds{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .formAds {
+        grid-column: 3 / span 8;
+        grid-row: span 3;
+        margin: auto;
+        padding: 5px;
+        text-align: center;
+        border: solid 2px black;
+    }
+ 
+}
+   
+@media (min-width:1026px) {
+    
+    .gridContainerAds {
+        display: grid;
+        grid-template-rows: repeat(1, 1fr);
+        grid-column: span 12;
+        grid-row: span 1;
+    }
+ 
+}
+ 
+ 

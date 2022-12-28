@@ -9,7 +9,7 @@ module.exports = (app) => {
 
   // Enable Cross Origin Resource Sharing to all origins by default
   app.use(cors({
-    origin: ['http://localhost:3000','http://localhost:80','https://freelancev1.herokuapp.com/','http://www.freelancev1.com'],
+    origin: ['http://localhost:3000','http://localhost:80','https://freelancev1.herokuapp.com/','https://www.freelancev1.com'],
     credentials: true
   }));
 
@@ -21,26 +21,47 @@ module.exports = (app) => {
 
   app.use(cookieParser())
 
-  app.enable('trust proxy');
+  //If you have your node.js behind a proxy and are using secure: true, you need to set “trust proxy” in express:
+  //app.set('trust proxy', 1) // trust first proxy
 
   // Creates a session
-  app.use(
+  if(process.env.REACT_APP_NODE_ENV === "production") {
+    app.use(
     session({  
       secret: process.env.REACT_APP_SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
       cookie: {
-        httpOnly: true,
+        httpOnly: false,
         secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 30
       },
       store: new pgSession({
-        pool : db, // Connection pool
-        tableName : 'session'   // Use another table-name than the default "session" one
-        // Insert connect-pg-simple options here
+        pool : db,
+        tableName : 'session'
       }),
     })
   );
+  };
+
+  if(process.env.REACT_APP_NODE_ENV === "development") {
+    app.use(
+    session({  
+      secret: process.env.REACT_APP_SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: false,
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24 * 30
+      },
+      store: new pgSession({
+        pool : db,
+        tableName : 'session' 
+      }),
+    })
+  );
+  }
 
   return app;
   
