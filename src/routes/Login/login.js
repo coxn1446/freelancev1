@@ -10,7 +10,7 @@ import freelanceLogo from "../../resources/Freelance v1-logos/Freelance v1-logos
 
 
 const Login = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const status = searchParams.get("status")
   function alert () {
     window.alert('If you have forgotten your password, then your account is lost forever. I could help you, but wont. Let this be a lesson to you in accountability.')
@@ -34,9 +34,7 @@ const Login = () => {
       <br></br>
       <p className="loginParagraph">Don't have an account yet?</p>
       <div className="loginRegisterLink">
-        <button className="loginRegisterLinkButton">
-          <Link className="loginRegisterText" to="/register">Register</Link>
-        </button>
+          <Link style={{textDecoration: "none"}} to="/register"><button className="loginRegisterLinkButton"><p style={{margin: 0, width: "100%"}}>Register</p></button></Link>
       </div>
       <br></br>
       <p className="loginParagraph" id="secondLoginParagraph" onClick={alert}>Forget password?</p>

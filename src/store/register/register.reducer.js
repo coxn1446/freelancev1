@@ -32,6 +32,10 @@ const registerSlice = createSlice({
             case 'radioChoice3b':
                 state.displayType3 = 'none'
                 break;
+            default:
+                state.displayType1 = 'none'
+                state.displayType2 = 'none'
+                state.displayType3 = 'none'
             }
         }
     }

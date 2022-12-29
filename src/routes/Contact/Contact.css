@@ -4,10 +4,14 @@
 }
 
 @media (min-width:600px) and (max-width:1025px){
-    .itemAContainerBlog {
+    .itemAContainerContact {
      display:grid;
      grid-template-columns: repeat(12,1fr);
      grid-column: 1 / span 12;
+    }
+
+    .paragraphBlog{
+        grid-column: 1 / span 12;
     }
 
 }

@@ -46,6 +46,7 @@
     border-radius: 10px;
     font-size: large;
     border: black 1px solid;
+    text-align: center;
 }
 
 .loginRegisterLink {

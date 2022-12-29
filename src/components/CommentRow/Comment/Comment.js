@@ -30,23 +30,25 @@ const Comment = (props) => {
     if(Number(userID) === userData.passport.user.id) {
       setUserIDCheck(true)
     }
-  }, [userIDCheck])
+  }, [userID, userData.passport.user.id])
 
   const handleLike = async () => {
     //Adds a like to the database
     await fetch(`/likes/${commentID}`,{
       method: 'POST',
       credentials: "include",
-      headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
-    
-    //Edits the number of likes associated with a comment  
-    await fetch(`/comments/like/${commentID}`,{
-      method: 'PUT',
-      credentials: "include",
-      headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
-      //changes like status aesthetically
-      setIsLiked(true)
-      setLikes(likes + 1)
+      headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
+    }).then( async () => {
+      //Edits the number of likes associated with a comment  
+      await fetch(`/comments/like/${commentID}`,{
+        method: 'PUT',
+        credentials: "include",
+        headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
+      })
+    })
+    //changes like status in the DOM
+    setIsLiked(true)
+    setLikes(likes + 1)
   }
 
   const handleUnlike = async () => {
@@ -54,16 +56,18 @@ const Comment = (props) => {
     await fetch(`/likes/${commentID}`,{
       method: 'DELETE',
       credentials: "include",
-      headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
-    
-    //Edits the number of likes associated with a comment  
-    await fetch(`/comments/unlike/${commentID}`,{
-      method: 'PUT',
-      credentials: "include",
-      headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}})
-      //changes like status aesthetically
-      setIsLiked(false)
-      setLikes(likes - 1)
+      headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
+    }).then( async () => {
+      //Edits the number of likes associated with a comment  
+      await fetch(`/comments/unlike/${commentID}`,{
+        method: 'PUT',
+        credentials: "include",
+        headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
+      })
+    })
+    //changes like status in the DOM
+    setIsLiked(false)
+    setLikes(likes - 1)
   }
 
   //searches for the userId in the cookie within a "who has liked what" table. If the userID appears next to the comment
@@ -72,7 +76,7 @@ const Comment = (props) => {
     await fetch(`/likes/${commentID}`,{
           method: 'GET',
           credentials: "include",
-          headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
+          headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
     }).then((response) => response.json())
     .then( async (data) => {
       for (let row = 0; row < data.length; row++) {
@@ -85,37 +89,35 @@ const Comment = (props) => {
     })
   }
 
-
-
   //Takes commentID from props, and then deletes data associated with that ID in the database
   const handleDeleteComment = async () => {
+
     await fetch(`/comments/${commentID}`,{
       method: 'DELETE',
       headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:3000',}
-    }).then(() => {
-      //remove comment aesthetically
-       setDisplaySwitch('none')
+      'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
     })
+    //remove comment in the DOM
+    setDisplaySwitch('none')
   }
 
   return(
     <Async promiseFn={checkIsLiked}>
       {({ data, error, isPending }) => {
-        if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
+        //if (isPending) return "Processing.."
         return (
           <div style={{display: displaySwitch}}className='itemEContainerBlog'>
-            <img className='itemEABlog' src={profilePicURL}></img>
+            <img alt="profile pic"className='itemEABlog' src={profilePicURL}></img>
             <div className='itemEBBlog'>{username} @ {date} {hour}</div>
             <div className='itemECBlog'>{text}</div>
             { userIDCheck
-              ? <img className='itemEDBlog' src={deleteButton} onClick={handleDeleteComment}></img>
+              ? <img alt="delete comment icon" className='itemEDBlog' src={deleteButton} onClick={handleDeleteComment}></img>
               : null
             }
             { isLiked 
-              ? <img className='itemEEBlog' src={likeSelected} onClick={handleUnlike}></img>
-              : <img className='itemEEBlog' src={likeDeselected} onClick={handleLike}></img>
+              ? <img alt="like selected icon" className='itemEEBlog' src={likeSelected} onClick={handleUnlike}></img>
+              : <img alt="like unselected icon" className='itemEEBlog' src={likeDeselected} onClick={handleLike}></img>
             }
             <div className='itemEFBlog'>{likes}</div>
           </div>

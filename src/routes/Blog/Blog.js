@@ -6,6 +6,7 @@ import {useSelector } from 'react-redux';
 import Nav from "../../components/Nav/Nav"
 import BlogNav from "../../components/BlogNav/BlogNav"
 import CommentForm from "../../components/CommentForm/CommentForm"
+import TopCommentRow from "../../components/CommentRow/TopCommentRow"
 import CommentRow from "../../components/CommentRow/CommentRow"
 
 //Blog Posts
@@ -38,17 +39,22 @@ const Blog = () => {
     {post === "blogPostJobs" ? <Jobs></Jobs> : null }
     {post === "blogPostCollecting" ? <Collecting></Collecting> : null }
     { isPostSelected 
-      ? <CommentForm post={post}></CommentForm>
+      ? <div className="itemGContainerBlog">
+          <CommentForm post={post}></CommentForm>
+          <p className='paragraphBlog'>Top comments</p>
+          <TopCommentRow post={post}></TopCommentRow>
+          <p className='paragraphBlog'>Recent comments</p>
+          <CommentRow post={post}></CommentRow>
+        </div>
       : <div className="itemFContainerBlog">
           <p className="itemFA">I have been working on these short stories for a few years, fairly confident that whole time I was never going to share them with anyone. I wrote them just because I like to write. There are a few more I might publish; if you'd like to be notified when/if I do, please leave your email below.</p>
           <form className="itemFB" method='POST' action="/users/subscribe?_method=PUT" id="form3">
             <input form="form3" type="email" id="emailSubscribeBlog" name="emailSubscribeBlog" required></input>
             <button type="submit" form="form3">Subscribe</button>
-        </form>
+          </form>
         </div>
 
     }
-    <CommentRow post={post}></CommentRow>
     
     </div>
   )

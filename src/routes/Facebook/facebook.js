@@ -7,7 +7,7 @@ import Async from "react-async"
 
 
 const Facebook = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const code = searchParams.get("code")
 
     const facebookOAuth2 = async () => {

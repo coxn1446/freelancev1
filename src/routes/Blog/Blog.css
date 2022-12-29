@@ -50,6 +50,14 @@
         grid-row: 2 / span 1;
         grid-column: 1 / span 12;
     }
+
+    .paragraphBlog {
+        grid-column: 1 / span 12;
+    }
+
+    .itemGContainerBlog {
+        grid-column: 1 / span 12;
+    }
      
 
  

@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require("../db/index")
-const fetch = require("node-fetch");
-global.Headers = fetch.Headers;
 
 
 module.exports = (app) => {
@@ -21,15 +19,6 @@ module.exports = (app) => {
             res.redirect("https://www.freelancev1.com/blog")
         }
     });
-
-
-    //pulls all comments from the database (double check this route is being used)
-    router.get('/', async (req, res, next) => {
-        const query = 'SELECT * FROM comments';
-        const content = await db.query(query)
-        res.send(content.rows)
-    });
-
 
     //pulls all comments from the database for a specific post
     router.get('/:blog', async (req, res, next) => {

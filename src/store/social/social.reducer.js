@@ -74,6 +74,15 @@ const socialSlice = createSlice({
                 state.maxLength = "3000"
                 state.textareaPlaceholderText = `You need to apply for additional permissions through the LinkedIn developer portal in order to pull Job Titles. I have just made up your job as a placeholder, you are a ${state.linkedin.textTwo} now.`
                 break;
+            default:
+                state.itemBStyle = {border: '3px solid black'};
+                state.itemCStyle = {border: '3px solid black'};
+                state.itemDStyle = {border: '3px solid black'};
+                state.formAction = "";
+                state.isFacebookSelected = false;
+                state.maxLength = "3000";
+                state.formSubmitText = "Select A Profile";
+                state.textareaPlaceholderText = "Sign in to one of your profiles to start publishing content. What you get: a post on your timeline. What I get: the nominal value received from selling your personal data on the dark web.";
             }
         },
         chooseHoroscope: (state) => {
@@ -95,6 +104,8 @@ const socialSlice = createSlice({
             case 'facebookPostSent':
                 state.textareaPlaceholderText = 'Misinformation spread successfully. Send some more?'
                 break;
+            default:
+                state.textareaPlaceholderText = "Sign in to one of your profiles to start publishing content. What you get: a post on your timeline. What I get: the nominal value received from selling your personal data on the dark web.";
             }
         }
     },

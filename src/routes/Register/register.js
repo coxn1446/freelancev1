@@ -11,7 +11,7 @@ import {selectDisplayType1, selectDisplayType2, selectDisplayType3} from "../../
 
 
 const Register = () => {
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 	const status = searchParams.get("status")
 	const dispatch = useDispatch();
 	const displayType1 = useSelector(selectDisplayType1);
@@ -74,9 +74,7 @@ const Register = () => {
 		<br></br>
 		<p className='registerParagraph'>Already have a profile?</p>
 		<div className="registerLoginLink">
-        <button className="registerLoginLinkButton">
-          <Link className="registerLoginText" to="/login">Login</Link>
-        </button>
+          <Link className="registerLoginText" to="/login"><button className="registerLoginLinkButton"><p style={{margin: 0, width: "100%"}}>Login</p></button></Link>
       </div>
 	  <br></br>
     </div>

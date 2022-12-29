@@ -7,7 +7,7 @@ const Ad = () => {
   
   return (
       <div className="itemAContainerAd">
-          <Link to="/ads" className="itemAAd"><img className="itemAAd" src={ad}></img></Link>
+          <Link to="/ads" className="itemAAd"><img alt="ad" className="itemAAd" src={ad}></img></Link>
       </div>
   );
 }

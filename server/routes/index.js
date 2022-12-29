@@ -7,6 +7,7 @@ const blogRouter = require('./blog')
 const commentsRouter = require('./comments')
 const usersRouter = require('./users')
 const likesRouter = require('./likes')
+const adsRouter = require('./ads')
 
 
 module.exports = (app, passport) => {
@@ -19,4 +20,5 @@ module.exports = (app, passport) => {
   commentsRouter(app)
   usersRouter(app)
   likesRouter(app)
+  adsRouter(app)
 }

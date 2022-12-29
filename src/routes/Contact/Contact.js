@@ -1,8 +1,5 @@
 import "./Contact.css"
 import React from 'react';
-import {
-	Link
-  } from 'react-router-dom';
 import Nav from "../../components/Nav/Nav"
 
 
@@ -10,15 +7,18 @@ import Nav from "../../components/Nav/Nav"
 const Contact = () => {
 
   return (
-      <div className="itemAContainerBlog">
+      <div className="itemAContainerContact">
           <Nav></Nav>
-          <div>email: <a href="mailto:freelance1446@gmail.com">freelance1446@gmail.com</a></div>
+          <div className="paragraphBlog">email: <a href="mailto:freelance1446@gmail.com">freelance1446@gmail.com</a></div>
           <br></br>
-          <div>Github: <a href="https://github.com/coxn1446">https://github.com/coxn1446</a></div>
+          <div className="paragraphBlog">Github: <a href="https://github.com/coxn1446">https://github.com/coxn1446</a></div>
           <br></br>
-          <div>linkedIn: <a href="https://www.linkedin.com/in/williamwildernash/">William Wilder Nash</a></div>
+          <div className="paragraphBlog">Instagram: <a href="https://www.instagram.com/williamwildernash/">williamwildernash</a></div>
           <br></br>
-          <div>Zodiac: Gemini</div>
+          <div className="paragraphBlog">linkedIn: <a href="https://www.linkedin.com/in/williamwildernash/">William Wilder Nash</a></div>
+          <br></br>
+          <div className="paragraphBlog">Co-Star: @wnash1995 (Gemini)</div>
+          <br></br>
 
       </div>
   );

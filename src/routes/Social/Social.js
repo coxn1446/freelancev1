@@ -20,9 +20,7 @@ const Social = () => {
   const dispatch = useDispatch()
 
   //Pulls parameters from URL to use in conditional logic below
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  //Add the other options
+  const [searchParams] = useSearchParams();
   const status = searchParams.get("status")
 
   //Pulls in Redux state variables
@@ -80,21 +78,21 @@ const Social = () => {
     if(cookieData.passport.twitter){
       dispatch(getTwitterInfo(cookieData.passport.twitter[3]))
     }
-  }, [cookieData.passport.twitter]);
+  }, [cookieData.passport.twitter, dispatch]);
 
   useMemo(() => {
     if(cookieData.passport.linkedin){
       dispatch(getLinkedinInfo())
       dispatch({type: "social/linkedinChooseJob"})
     }
-  }, [cookieData.passport.linkedin]);
+  }, [cookieData.passport.linkedin, dispatch]);
 
   useMemo(() => {
     if(cookieData.passport.facebook){
       dispatch(getFacebookInfo1(cookieData.passport.facebook.access_token))
       dispatch(getFacebookInfo2(cookieData.passport.facebook.access_token))
     }
-  }, [cookieData.passport.facebook]);
+  }, [cookieData.passport.facebook, dispatch]);
 
   //Click handler for profile selection
   const handleSelectProfile = (e) => {
@@ -116,7 +114,7 @@ const Social = () => {
       type: "social/changeTextAreaText",
       target: status
     })
-  },[status])
+  },[status, dispatch])
 
   //creates a new Date object
   const date = new Date()
@@ -130,31 +128,31 @@ const Social = () => {
       {
         cookieData.passport.twitter ? 
           <div style={itemBStyle} className="itemDContainerSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>
-            <img className="itemDASocial" src={twitterURL}  id="itemDContainerSocial" onClick={handleSelectProfile}></img>
+            <img alt="twitter profile pic" className="itemDASocial" src={twitterURL}  id="itemDContainerSocial" onClick={handleSelectProfile}></img>
             <p className="itemDBSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{twitterTextOne}</p>
             <p className="itemDCSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{twitterTextTwo}</p>
           </div> :
           <form className="itemDContainerSocial2" action="/twitter/oauth1" method="post">
-            <button className="itemDTwitterButton" type="submit"><img src={twitterSignInButton} style={{height: '100%'}}></img></button>
+            <button className="itemDTwitterButton" type="submit"><img alt="twitter sign in button" src={twitterSignInButton} style={{height: '100%'}}></img></button>
           </form>
       }
       {
         cookieData.passport.facebook ? 
           <div style={itemCStyle} className="itemEContainerSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>
-            <img className="itemDASocial" src={facebookURL} id="itemEContainerSocial" onClick={handleSelectProfile}></img>
+            <img alt="facebook profile pic" className="itemDASocial" src={facebookURL} id="itemEContainerSocial" onClick={handleSelectProfile}></img>
             <p className="itemDBSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>{facebookTextOne}</p>
-            <p className="itemDCSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>{facebookTextTwo}</p>
+            <p className="itemDCSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>FB ID: {facebookTextTwo}</p>
           </div> :
-          <button type="submit" className="itemEContainerSocial2"><img src={facebookSignInButton} style={{height: '100%'}} onClick={facebookSignIn}></img></button>
+          <button type="submit" className="itemEContainerSocial2"><img alt="facebook sign in button" src={facebookSignInButton} style={{height: '100%'}} onClick={facebookSignIn}></img></button>
       }
       {
         cookieData.passport.linkedin ? 
           <div style={itemDStyle} className="itemFContainerSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>
-            <img className="itemDASocial" src={linkedinURL}  id="itemFContainerSocial" onClick={handleSelectProfile}></img>
+            <img alt="linkedin profile pic" className="itemDASocial" src={linkedinURL}  id="itemFContainerSocial" onClick={handleSelectProfile}></img>
             <p className="itemDBSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextOne}</p>
             <p className="itemDCSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextTwo}</p>
           </div> :
-          <button className="itemFContainerSocial2" type="submit"><img src={linkedInSignInButton} style={{height: '100%'}} onClick={linkedinSignIn}></img></button>
+          <button className="itemFContainerSocial2" type="submit"><img alt="linkedin sign in button" src={linkedInSignInButton} style={{height: '100%'}} onClick={linkedinSignIn}></img></button>
       }
       <div className="itemGContainerSocial">
         <form style={{display: 'none'}} method='post' action={formAction} id="form1">

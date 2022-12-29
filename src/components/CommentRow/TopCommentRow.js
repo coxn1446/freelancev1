@@ -3,12 +3,12 @@ import Async from "react-async"
 import "./CommentRow.css"
 import Comment from "./Comment/Comment"
 
-const CommentRow = (props) => {
+const TopCommentRow = (props) => {
   //pulls in state data from <Blog> component
   const post = props.post;
 
   //initializes empty array of Comment components
-  let CommentRows = []
+  let topCommentRows = []
 
   const fetchComments = async () => {
     //fetches all comments from the database
@@ -19,16 +19,16 @@ const CommentRow = (props) => {
     }).then((response) => response.json())
     .then(async (data) => {
       //sorts through all comments and orders them by number of likes
-      let data1 = data.sort((a, b) => b.id - a.id)
+      let data1 = data.sort((a, b) => b.num_of_likes - a.num_of_likes)
       //loops through top three comments, plugging data into individual <Comment> components' props
-      for (let row = 0; row < data1.length; row++) {
+      for (let row = 0; row < 3; row++) {
         await fetch(`/users/${data1[row].user_id}`,{
           method: 'GET',
           credentials: "include",
           headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
         }).then((response) => response.json())
         .then( async (data2) => {
-          CommentRows.push(
+          topCommentRows.push(
             <Comment
               id={row}
               commentid={data[row].id}
@@ -51,10 +51,10 @@ const CommentRow = (props) => {
       {({ data, error, isPending }) => {
         if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
-        return (CommentRows.sort((a, b) => b.props.commentid - a.props.commentid))
+        return (topCommentRows.sort((a, b) => b.props.likes - a.props.likes))
       }}
     </Async>
   )
 };
 
-export default CommentRow;
+export default TopCommentRow;

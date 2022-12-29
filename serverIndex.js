@@ -9,7 +9,7 @@ var https = require('https');
 const loaders = require('./server/loaders');
 
 const httpsPORT = process.env.PORT || 443;
-const httpPORT = process.env.PORT || 80;
+const httpPORT = process.env.PORT || 4000;
 
 async function startServer() {
 

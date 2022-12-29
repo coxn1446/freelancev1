@@ -7,7 +7,7 @@ import Async from "react-async"
 
 
 const LinkedIn = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const code = searchParams.get("code")
 
     const linkedinOAuth3 = async () => {
