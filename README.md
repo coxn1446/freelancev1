@@ -92,6 +92,7 @@ After all the above has been sorted, you can start the app by running the follow
 $ npm start
 $ npm run server
 ```
+The app should now be viewable in your browser at "http://localhost:3000"
 
 ## Production
 If you decide to clone this repo and make a website of your own, you will need to do a few things in order to get the app ready for development.
