@@ -7,10 +7,10 @@ const CommentForm = (props) => {
   
   return (
       <div className="itemDContainerBlog">
-          <form method='post' action="/comments" id="form2">
+          <form className="blogCommentForm" method='post' action="/comments" id="form2">
             <input form="form2" type="text" id="commentBlog" name="commentBlog"></input>
             <input type="hidden" form="form2" id="postBlog" name="postBlog" value={post} ></input>
-            <button type="submit" form="form2">Post Comment</button>
+            <button type="submit" form="form2" id="submitBlog">Post Comment</button>
         </form>
       </div>
   );

@@ -133,7 +133,7 @@ const Social = () => {
             <p className="itemDCSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>{twitterTextTwo}</p>
           </div> :
           <form className="itemDContainerSocial2" action="/twitter/oauth1" method="post">
-            <button className="itemDTwitterButton" type="submit"><img alt="twitter sign in button" src={twitterSignInButton} style={{height: '100%'}}></img></button>
+            <button className="itemDTwitterButton" type="submit"><img alt="twitter sign in button" src={twitterSignInButton} className="signInButtonImageSocial"></img></button>
           </form>
       }
       {
@@ -143,7 +143,7 @@ const Social = () => {
             <p className="itemDBSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>{facebookTextOne}</p>
             <p className="itemDCSocial" id="itemEContainerSocial" onClick={handleSelectProfile}>FB ID: {facebookTextTwo}</p>
           </div> :
-          <button type="submit" className="itemEContainerSocial2"><img alt="facebook sign in button" src={facebookSignInButton} style={{height: '100%'}} onClick={facebookSignIn}></img></button>
+          <button type="submit" className="itemEContainerSocial2"><img alt="facebook sign in button" src={facebookSignInButton} className="signInButtonImageSocial" onClick={facebookSignIn}></img></button>
       }
       {
         cookieData.passport.linkedin ? 
@@ -152,7 +152,7 @@ const Social = () => {
             <p className="itemDBSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextOne}</p>
             <p className="itemDCSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextTwo}</p>
           </div> :
-          <button className="itemFContainerSocial2" type="submit"><img alt="linkedin sign in button" src={linkedInSignInButton} style={{height: '100%'}} onClick={linkedinSignIn}></img></button>
+          <button className="itemFContainerSocial2" type="submit"><img alt="linkedin sign in button" src={linkedInSignInButton} className="signInButtonImageSocial" onClick={linkedinSignIn}></img></button>
       }
       <div className="itemGContainerSocial">
         <form style={{display: 'none'}} method='post' action={formAction} id="form1">

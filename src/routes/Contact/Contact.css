@@ -1,5 +1,14 @@
    
    @media (min-width:320px) and (max-width:599px){
+    .itemAContainerContact {
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-column: 1 / span 12;
+       }
+   
+       .paragraphBlog{
+           grid-column: 1 / span 12;
+       }
  
 }
 
@@ -17,6 +26,15 @@
 }
 
 @media (min-width:1026px) {
+    .itemAContainerContact {
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-column: 1 / span 12;
+       }
+   
+       .paragraphBlog{
+           grid-column: 1 / span 12;
+       }
 
 }
 

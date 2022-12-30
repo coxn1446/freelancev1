@@ -13,6 +13,7 @@ import CommentRow from "../../components/CommentRow/CommentRow"
 import Anatomy from "../../components/Posts/Anatomy"
 import Jobs from "../../components/Posts/Jobs"
 import Collecting from "../../components/Posts/Collecting"
+import Wind from "../../components/Posts/Wind"
 
 import {selectPost} from "../../store/blog/blog.reducer"
 
@@ -38,6 +39,7 @@ const Blog = () => {
     {post === "blogPostAnatomy" ? <Anatomy></Anatomy> : null }
     {post === "blogPostJobs" ? <Jobs></Jobs> : null }
     {post === "blogPostCollecting" ? <Collecting></Collecting> : null }
+    {post === "blogPostWind" ? <Wind></Wind> : null }
     { isPostSelected 
       ? <div className="itemGContainerBlog">
           <CommentForm post={post}></CommentForm>

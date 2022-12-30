@@ -25,4 +25,10 @@ module.exports = (app) => {
         res.send(content.rows[0])
     });
 
+    router.get('/wind', async (req, res, next) => {
+        const query = 'SELECT * FROM blogs WHERE title = $1';
+        const content = await db.query(query, ["Wind"])
+        res.send(content.rows[0])
+    });
+
 } 

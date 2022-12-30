@@ -15,7 +15,6 @@ const Anatomy = () => {
       await fetch(`/blog/anatomy`, {
           method: 'GET'
       }).then(response => response.json()).then(result => {
-        console.log(result)
         paragraph1 = result.paragraph1
         paragraph2 = result.paragraph2
         paragraph3 = result.paragraph3

@@ -21,7 +21,7 @@ const TopCommentRow = (props) => {
       //sorts through all comments and orders them by number of likes
       let data1 = data.sort((a, b) => b.num_of_likes - a.num_of_likes)
       //loops through top three comments, plugging data into individual <Comment> components' props
-      for (let row = 0; row < 3; row++) {
+      for (let row = 0; row < data1.length; row++) {
         await fetch(`/users/${data1[row].user_id}`,{
           method: 'GET',
           credentials: "include",
@@ -51,7 +51,7 @@ const TopCommentRow = (props) => {
       {({ data, error, isPending }) => {
         if (isPending) return "Loading..."
         if (error) return `Something went wrong: ${error.message}`
-        return (topCommentRows.sort((a, b) => b.props.likes - a.props.likes))
+        return (topCommentRows.sort((a, b) => b.props.likes - a.props.likes).splice(0, 3))
       }}
     </Async>
   )

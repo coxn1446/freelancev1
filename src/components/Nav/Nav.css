@@ -1,5 +1,31 @@
    
    @media (min-width:320px) and (max-width:599px){
+    .itemAContainerNav {
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: repeat(2,1fr);
+        grid-column: 1 / span 12;
+        grid-row: span 1;
+       }
+
+       .itemAANav, .itemACNav {
+           grid-column: span 3;
+           font-size: 20px;
+           margin: auto;
+           color: black;
+       }
+
+       .itemACNav {
+           background-color: transparent;
+       }
+
+       .navButton{
+           border: none;
+           background-color: transparent;
+           font-size: 20px;
+           text-decoration: underline;
+           color: black;
+       }
  
    }
    
@@ -35,6 +61,33 @@
    }
    
    @media (min-width:1026px) {
+    .itemAContainerNav {
+        display:grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: repeat(2,1fr);
+        grid-column: 3 / span 8;
+        grid-row: span 1;
+       }
+
+       .itemAANav, .itemACNav {
+           grid-column: span 3;
+           font-size: 20px;
+           margin: auto;
+           color: black;
+       }
+
+       .itemACNav {
+           background-color: transparent;
+       }
+
+       .navButton{
+           border: none;
+           background-color: transparent;
+           font-size: 20px;
+           text-decoration: underline;
+           color: black;
+
+       }
  
    }
  

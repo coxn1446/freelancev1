@@ -98,10 +98,10 @@ The app should now be viewable in your browser at "http://localhost:3000"
 If you decide to clone this repo and make a website of your own, you will need to do a few things in order to get the app ready for development.
 
 1. You will need a domain name
-* I used Namecheap to buy my domain: freelancev1.com
-* You will then need to replace my domain in my source code with your domain. A simple find and replace function in your code editor ought to do the trick
+    * I used Namecheap to buy my domain: freelancev1.com
+    * You will then need to replace my domain in my source code with your domain. A simple find and replace function in your code editor ought to do the trick
 2. You will need to host your code somewhere, I used Heroku which has a handy PostgreSQL plug in.
 3. Remove the proxy line from package.json. A proxy server will ruin your Express middleware in production.
 4. When you are done editing the source code, you need to run the following command:
-* `$ npm run build`
-* This will reduce your source code to a single, optimized script that will be readable by your single-HTML-page React app.
+    * `$ npm run build`
+    * This will reduce your source code to a single, optimized script that will be readable by your single-HTML-page React app.

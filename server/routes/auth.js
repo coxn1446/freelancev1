@@ -50,10 +50,36 @@ module.exports = (app, passport) => {
               [req.body.username, hashedPassword, req.body.firstname, req.body.lastname, req.body.phonenumber, profilePicURL]
           )
           if(process.env.REACT_APP_NODE_ENV === "development"){
-            res.redirect('/login')
+            passport.authenticate('local', function(err, user, info) {
+              if (err) { return next(err); }
+
+              // Redirect if it fails
+              if (!user) { 
+                  return res.redirect(`/login?status=${info.message}`)
+                }
+              req.logIn(user, function(err) {
+                if (err) { return next(err); }
+
+                // Redirect if it succeeds
+                  return res.redirect(`/`)
+              });
+            })(req, res, next);
           }
           if(process.env.REACT_APP_NODE_ENV === "production"){
-            res.redirect(`https://www.freelancev1.com/login`)
+            passport.authenticate('local', function(err, user, info) {
+              if (err) { return next(err); }
+
+              // Redirect if it fails
+              if (!user) { 
+                  return res.redirect(`https://www.freelancev1.com/login?status=${info.message}`)
+                }
+              req.logIn(user, function(err) {
+                if (err) { return next(err); }
+                
+                // Redirect if it succeeds
+                  return res.redirect(`https://www.freelancev1.com/`)
+              });
+            })(req, res, next);
           }
       } catch (err){
           console.error(err.message)
@@ -103,7 +129,6 @@ module.exports = (app, passport) => {
     req.logout(function(err) {
       if (err) { return next(err); }
       if(process.env.REACT_APP_NODE_ENV === "development"){
-        console.log(process.env.REACT_APP_NODE_ENV)
         res.redirect('/login');
       }
       if(process.env.REACT_APP_NODE_ENV === "production"){

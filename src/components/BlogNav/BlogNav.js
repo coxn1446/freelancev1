@@ -13,11 +13,11 @@ const BlogNav = () => {
   }
   
   return (
-      <div className="itemBContainerBlog">
-          <button className="itemBA" id="blogPostAnatomy" onClick={handleSelectPost}>Anatomy</button>
-          <button className="itemBA" id="blogPostWind" onClick={handleSelectPost}>Wind</button>
-          <button className="itemBA" id="blogPostJobs" onClick={handleSelectPost}>Jobs</button>
-          <button className="itemBA" id="blogPostCollecting" onClick={handleSelectPost}>Collecting</button>
+      <div className="itemBContainerBlogNav">
+          <button className="itemBABlogNav" id="blogPostAnatomy" onClick={handleSelectPost}>Anatomy</button>
+          <button className="itemBABlogNav" id="blogPostWind" onClick={handleSelectPost}>Wind</button>
+          <button className="itemBABlogNav" id="blogPostJobs" onClick={handleSelectPost}>Jobs</button>
+          <button className="itemBABlogNav" id="blogPostCollecting" onClick={handleSelectPost}>Collecting</button>
       </div>
   );
 }

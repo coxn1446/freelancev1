@@ -14,9 +14,6 @@ module.exports = async (app) => {
 
   // Load API route handlers, second argument is 'passport'
   await routeLoader(app, passport);
-
-  // Load Swagger
-  //await swaggerLoader(app);
   
   // Error Handler
   app.use((err, req, res, next) => {
