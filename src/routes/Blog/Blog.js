@@ -13,7 +13,7 @@ import CommentRow from "../../components/CommentRow/CommentRow"
 import Anatomy from "../../components/Posts/Anatomy"
 import Jobs from "../../components/Posts/Jobs"
 import Collecting from "../../components/Posts/Collecting"
-import Wind from "../../components/Posts/Wind"
+import Wind from "../../components/Posts/Collecting"
 
 import {selectPost} from "../../store/blog/blog.reducer"
 
