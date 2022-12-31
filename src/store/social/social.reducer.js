@@ -19,7 +19,6 @@ const socialSlice = createSlice({
             textTwo: null,
         },
         linkedin: {
-            profilePicutreURL: "",
             textOne: null,
             textTwo: null,
             id: ""
