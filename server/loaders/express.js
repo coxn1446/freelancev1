@@ -22,7 +22,7 @@ module.exports = (app) => {
   app.use(cookieParser())
 
   //If you have your node.js behind a proxy and are using secure: true, you need to set “trust proxy” in express:
-  //app.set('trust proxy', 1) // trust first proxy
+  /app.enable('trust proxy') // trust first proxy
 
   // Creates a session
   if(process.env.REACT_APP_NODE_ENV === "production") {
@@ -32,7 +32,7 @@ module.exports = (app) => {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        httpOnly: false,
+        httpOnly: true,
         secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 30
       },
