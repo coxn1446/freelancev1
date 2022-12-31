@@ -15,7 +15,7 @@ const Twitter = () => {
         await fetch(`/twitter/oauth3/${oauthToken}/${oauthVerifier}`,{
             method: 'POST',
             credentials: "include",
-            headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
+            headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
         }).then((response) => response.text())
         .then((data) => {
             return data
@@ -32,7 +32,7 @@ const Twitter = () => {
             <div>
                 <script>{window.location.assign('http://localhost:3000')}</script>
             </div>
-    )
+          )
         }
         if(process.env.REACT_APP_NODE_ENV === "production"){
           return (

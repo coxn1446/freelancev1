@@ -14,7 +14,7 @@ const LinkedIn = () => {
         await fetch(`/linkedin/oauth3/${code}`,{
             method: 'POST',
             credentials: "include",
-            headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
+            headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
         }).then((response) => response.text())
         .then((data) => {
             return data
@@ -28,7 +28,7 @@ const LinkedIn = () => {
         if (error) return `Something went wrong: ${error.message}`
         return (
           <div>
-              <script>{window.location.assign('http://localhost:3000')}</script>
+              <script>{window.location.assign('https://www.freelancev1.com')}</script>
           </div>
         )
       }}

@@ -108,7 +108,7 @@ const Comment = (props) => {
         //if (isPending) return "Processing.."
         return (
           <div style={{display: displaySwitch}}className='itemEContainerBlog'>
-            <img alt="profile pic"className='itemEABlog' src={profilePicURL}></img>
+            <img alt="profile pic" className='itemEABlog' src={profilePicURL}></img>
             <div className='itemEBBlog'>{username} @ {date} {hour}</div>
             <div className='itemECBlog'>{text}</div>
             { userIDCheck
