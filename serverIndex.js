@@ -32,6 +32,7 @@ async function startServer() {
     app.use('/linkedin', express.static(path.join(__dirname, 'build')))
 
     console.log(httpsPORT)
+    console.log(process.env.REACT_APP_NODE_ENV)
     app.listen(httpsPORT)
   }
 
