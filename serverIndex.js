@@ -30,6 +30,7 @@ async function startServer() {
     app.use('/twitter', express.static(path.join(__dirname, 'build')))
     app.use('/facebook', express.static(path.join(__dirname, 'build')))
     app.use('/linkedin', express.static(path.join(__dirname, 'build')))
+    app.use('/ads', express.static(path.join(__dirname, 'build')))
 
     app.listen(httpsPORT)
   }
