@@ -148,7 +148,7 @@ const Social = () => {
       {
         cookieData.passport.linkedin ? 
           <div style={itemDStyle} className="itemFContainerSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>
-            <img alt="linkedin profile pic" className="itemDASocial" src={linkedinURL}  id="itemFContainerSocial" onClick={handleSelectProfile}></img>
+            <img alt="linkedin profile pic" className="itemDASocial" src='https://media.licdn.com/dms/image/C5603AQGKkZH7V_Slhg/profile-displayphoto-shrink_100_100/0/1572999001330?e=1677715200&v=beta&t=soqItlvrGuAgS2Q34yD93zlARTn70iIPv36tw8VKE70' id="itemFContainerSocial" onClick={handleSelectProfile}></img>
             <p className="itemDBSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextOne}</p>
             <p className="itemDCSocial" id="itemFContainerSocial" onClick={handleSelectProfile}>{linkedinTextTwo}</p>
           </div> :
