@@ -14,18 +14,18 @@ const socialSlice = createSlice({
         formSubmitText: "Select A Profile",
         textareaPlaceholderText: "Sign in to one of your profiles to start publishing content. What you get: a post on your timeline. What I get: the nominal value received from selling your personal data on the dark web.",
         twitter: {
-            profilePictureURL: null,
+            profilePictureURL: "",
             textOne: null,
             textTwo: null,
         },
         linkedin: {
-            profilePicutreURL: null,
+            profilePicutreURL: "",
             textOne: null,
             textTwo: null,
             id: ""
         },
         facebook: {
-            profilePicutreURL: null,
+            profilePicutreURL: "",
             textOne: null,
             textTwo: null
         }
