@@ -30,8 +30,6 @@ const Blog = () => {
     }
   }, [post])
 
-
-
   return(
     <div className="gridContainerBlog">
     <Nav></Nav>
@@ -49,7 +47,7 @@ const Blog = () => {
           <CommentRow post={post}></CommentRow>
         </div>
       : <div className="itemFContainerBlog">
-          <p className="itemFA">I have been working on these short stories for a few years, fairly confident that whole time I was never going to share them with anyone. I wrote them just because I like to write. There are a few more I might publish; if you'd like to be notified when/if I do, please leave your email below.</p>
+          <p className="itemFA">I have been working on these short stories over the past year or so, fairly confident that whole time I was never going to share them with anyone. I wrote them just because I like to write. There are a few more I might publish, along with maybe some other eclectic pieces; if you'd like to be notified when/if I do, please leave your email below.</p>
           <form className="itemFB" method='POST' action="/users/subscribe?_method=PUT" id="form3">
             <input form="form3" type="email" id="emailSubscribeBlog" name="emailSubscribeBlog" required></input>
             <button type="submit" form="form3">Subscribe</button>

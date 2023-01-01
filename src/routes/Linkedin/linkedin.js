@@ -7,9 +7,11 @@ import Async from "react-async"
 
 
 const LinkedIn = () => {
+    //pulls in UTM parameters to run the next OAuth step
     const [searchParams] = useSearchParams();
     const code = searchParams.get("code")
 
+    //automatically runs the next OAuth step and then redirects to the home page
     const linkedinOAuth3 = async () => {
         await fetch(`/linkedin/oauth3/${code}`,{
             method: 'POST',

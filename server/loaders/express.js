@@ -7,9 +7,9 @@ const db = require("../db/index")
 
 module.exports = (app) => {
 
-  // Enable Cross Origin Resource Sharing to all origins by default
+  // provides a whitelist of acceptable origins
   app.use(cors({
-    origin: ['http://localhost:3000','http://localhost:80','https://freelancev1.herokuapp.com/','https://www.freelancev1.com'],
+    origin: ['http://localhost:3000','http://localhost:4000','https://www.freelancev1.com'],
     credentials: true
   }));
 
@@ -19,12 +19,13 @@ module.exports = (app) => {
   // Parses urlencoded bodies
   app.use(bodyParser.urlencoded({ extended: true }));
 
+  //Parse HTTP request cookies
   app.use(cookieParser())
 
-  //If you have your node.js behind a proxy and are using secure: true, you need to set “trust proxy” in express:
-  /app.enable('trust proxy') // trust first proxy
+  //If you have your node.js behind a proxy you need to set “trust proxy” in express:
+  app.enable('trust proxy') // trust first proxy
 
-  // Creates a session
+  // Creates a session in production
   if(process.env.REACT_APP_NODE_ENV === "production") {
     app.use(
     session({  
@@ -44,6 +45,7 @@ module.exports = (app) => {
   );
   };
 
+  // Creates a session in development
   if(process.env.REACT_APP_NODE_ENV === "development") {
     app.use(
     session({  

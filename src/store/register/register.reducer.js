@@ -8,6 +8,7 @@ const registerSlice = createSlice({
         displayType3: 'none'
     },
     reducers: {
+        //displays or hides form options depending on previous choice
         classChange: (state, action) => {
             const expr = action.target
             switch (expr) {

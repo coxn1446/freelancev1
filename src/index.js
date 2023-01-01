@@ -8,6 +8,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import { default as rootReducer } from "../src/store/rootReducer"
 import "./index.css"
 
+//store configures state variables
 const store = configureStore({
   reducer: rootReducer
 });

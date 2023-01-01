@@ -1,8 +1,7 @@
 const expressLoader = require('./express');
 const passportLoader = require('./passport');
 const routeLoader = require('../routes');
-//const swaggerLoader = require('./swagger');
-//const swagger = require('./swagger');
+
 
 module.exports = async (app) => {
 
@@ -12,7 +11,7 @@ module.exports = async (app) => {
   // Load Passport middleware
   const passport = await passportLoader(expressApp);
 
-  // Load API route handlers, second argument is 'passport'
+  // Load API route handlers
   await routeLoader(app, passport);
   
   // Error Handler

@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool
 
+//creates postgreSQL database instance. Uses local variables in development then a database URL in production
   const pool = (() => {
     if (process.env.REACT_APP_NODE_ENV === 'development') {
         return new Pool({

@@ -4,11 +4,13 @@ import Async from "react-async"
 
 
 const Anatomy = () => {
+    //initializes paragraph variables
     let paragraph1 = ""
     let paragraph2 = ""
     let paragraph3 = ""
     let paragraph4 = ""
 
+    //pulls paragraphs from database and sets them to variables outside the function
     const fetchBlog = async () => {
        await fetch(`/blog/jobs`, {
             method: 'GET'

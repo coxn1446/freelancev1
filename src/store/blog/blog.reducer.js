@@ -7,6 +7,7 @@ const blogSlice = createSlice({
         post: "None",
     },
     reducers: {
+        //sets state to the selected blog
         selectPost: (state, action) => {
             const post = action.target;
             state.post = post

@@ -7,9 +7,9 @@ module.exports = (app) => {
 
     app.use('/ads', router);
 
-    //inserts a new comment into the database
+    //inserts a new ad into the database
     router.post('/', async (req, res, next) => {
-        //checks to see if a username already exists
+        //checks to see if a ad for that date already exists
         const result = await db.query("SELECT date FROM ads WHERE date = $1", [req.body.dateAds])
         if( Object(result.rows).length !== 0){
             if(process.env.REACT_APP_NODE_ENV === "development"){
@@ -19,6 +19,7 @@ module.exports = (app) => {
                 res.redirect(`https://www.freelancev1.com/ads?status=Date has already been chosen`)
             }
         }
+        //if date is available, inserts info from HTML form into the database
         if( Object(result.rows).length === 0){
             let banner1 = false;
             let banner2 = false;

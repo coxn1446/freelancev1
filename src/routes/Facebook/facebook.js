@@ -7,9 +7,11 @@ import Async from "react-async"
 
 
 const Facebook = () => {
+    //pulls in UTM parameters to run the next OAuth step
     const [searchParams] = useSearchParams();
     const code = searchParams.get("code")
 
+    //automatically runs the next OAuth step and then redirects to the home page
     const facebookOAuth2 = async () => {
         await fetch(`/facebook/oauth2/${code}`,{
             method: 'GET',

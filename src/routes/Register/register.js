@@ -11,13 +11,19 @@ import {selectDisplayType1, selectDisplayType2, selectDisplayType3} from "../../
 
 
 const Register = () => {
+  	//pulls in UTM parameters to display error messages
 	const [searchParams] = useSearchParams();
 	const status = searchParams.get("status")
+
+  	//Creates useDispatch instance
 	const dispatch = useDispatch();
+
+	//pulls in state variables
 	const displayType1 = useSelector(selectDisplayType1);
 	const displayType2 = useSelector(selectDisplayType2);
 	const displayType3 = useSelector(selectDisplayType3);
 
+	//sends form choices to state variables
     function handleChoice(e){
         dispatch({
           type: 'register/classChange',
@@ -75,8 +81,9 @@ const Register = () => {
 		<p className='registerParagraph'>Already have a profile?</p>
 		<div className="registerLoginLink">
           <Link className="registerLoginText" to="/login"><button className="registerLoginLinkButton"><p style={{margin: 0, width: "100%"}}>Login</p></button></Link>
-      </div>
-	  <br></br>
+      	</div>
+		<br></br>
+		<div className="loginParagraph" style={{fontSize: 'smaller'}}><Link style={{color: "black"}} to="/privacy">Privacy Policy</Link></div>
     </div>
   );
 }

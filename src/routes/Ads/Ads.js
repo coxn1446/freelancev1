@@ -6,6 +6,7 @@ import {
 import Nav from '../../components/Nav/Nav'
 
 const Ads = () => {
+  //pulls in UTM parameters to display error/success messages.
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status")
 

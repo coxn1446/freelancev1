@@ -4,6 +4,7 @@ import {socialReducer} from './social/social.reducer';
 import {blogReducer} from './blog/blog.reducer';
 
 
+//all slices are combined into one reducer to be used in the Store
 export default combineReducers({
   register: registerReducer,
   social: socialReducer,

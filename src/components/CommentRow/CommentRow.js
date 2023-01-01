@@ -18,7 +18,7 @@ const CommentRow = (props) => {
       headers: {'Access-Control-Allow-Origin': ['http://localhost:3000', 'https://www.freelancev1.com']}
     }).then((response) => response.json())
     .then(async (data) => {
-      //sorts through all comments and orders them by number of likes
+      //sorts through all comments and orders them chronologically
       let data1 = data.sort((a, b) => b.id - a.id)
       //loops through top three comments, plugging data into individual <Comment> components' props
       for (let row = 0; row < data1.length; row++) {

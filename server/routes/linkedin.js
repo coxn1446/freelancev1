@@ -10,6 +10,7 @@ module.exports = (app) => {
 
     app.use('/linkedin', router);
 
+    //exchanges oauth token for access token
     router.post('/oauth3/:code/', (req, res) => {
         const linkedinCode = req.params.code
         const endpointURL = 'https://www.linkedin.com/oauth/v2/accessToken';
@@ -34,6 +35,7 @@ module.exports = (app) => {
         .catch(error => console.log('error', error));
     });
 
+    //uses access token in auth header to retrieve user info
     router.get('/user', (req, res) => {
       const myHeaders = new Headers();
       myHeaders.append("Authorization", `Bearer ${req.session.passport.linkedin.access_token}`);
@@ -52,6 +54,7 @@ module.exports = (app) => {
       
     })
 
+    //uses access token in auth header to allow users to post to their own timeline
     router.post('/share', (req, res) => {
       const linkedinID = req.body.linkedinID;
       const linkedinPost = req.body.text;

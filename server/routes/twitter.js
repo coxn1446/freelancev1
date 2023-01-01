@@ -5,7 +5,9 @@ const oauthSignature = require('oauth-signature')
 global.Headers = fetch.Headers;
 
 module.exports = (app) => {
+    //creates a time in ms since the epoch
     let timestamp  = Math.floor((new Date()).getTime() / 1000);
+
     const consumerKey = process.env.REACT_APP_TWITTER_APIKEY;
     const token = process.env.REACT_APP_TWITTER_ACESSTOKEN
     const consumerSecret = process.env.REACT_APP_TWITTER_APIKEYSECRET;
@@ -14,6 +16,7 @@ module.exports = (app) => {
 
     app.use('/twitter', router);
 
+    //uses client token to exchange for a request token
     router.post('/oauth1', async (req, res) => {
         const endpointURL = "https://api.twitter.com/oauth/request_token";
         const method = "POST";
@@ -42,11 +45,13 @@ module.exports = (app) => {
 
         fetch(endpointURL, requestOptions)
           .then(response => response.text())
+          //uses request token to exchange for an oauth token
           .then(result => res.redirect(`https://api.twitter.com/oauth/authorize?${result}`))
           .catch(error => console.log('error', error));
 
     })
 
+    //uses the oauth token from /oauth1 result to generate a bearer token
     router.post('/oauth3/:oauth_token/:oauth_verifier', (req, res) => {
         const oauthToken = req.params.oauth_token
         const oauthVerifier = req.params.oauth_verifier;
@@ -77,6 +82,7 @@ module.exports = (app) => {
         fetch(`https://api.twitter.com/oauth/access_token?oauth_token=${oauthToken}&oauth_verifier=${oauthVerifier}&oauth_consumer_key=${consumerKey}&oauth_signature_method=HMAC-SHA1&oauth_timestamp=${timestamp}&oauth_nonce=${nonce}&oauth_version=1.0&oauth_signature=${encodedSignature}`, requestOptions)
         .then(response => response.text())
         .then(result => {
+            //de-lints the oauth flow output to something usable/readable
             let finalArray = []
             function cleanUp(string) {
                 const index = string.indexOf("=");
@@ -92,6 +98,8 @@ module.exports = (app) => {
         .catch(error => console.log('error', error));
     });
 
+
+    //uses the bearer token from the oauth flow to generate user info
     router.get('/user/:username', (req, res) => {
         const username = req.params.username;
         const endpointURL = "https://api.twitter.com/1.1/users/show.json";
@@ -114,6 +122,7 @@ module.exports = (app) => {
        .catch(error => console.log('error', error));
     });
 
+    //uses the bearer token from the oauth flow to send a tweet on behalf of a user
     router.post('/sendtweet', (req, res) => {
         const endpointURL = "https://api.twitter.com/2/tweets";
         const method = "POST";
@@ -155,6 +164,7 @@ module.exports = (app) => {
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 
+        //redirects to the homepage
         if(process.env.REACT_APP_NODE_ENV === "development"){
             res.redirect('/?status=tweetsent');
         }

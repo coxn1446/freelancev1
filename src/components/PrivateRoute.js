@@ -10,25 +10,21 @@ let userData
 // Your promiseFn receives all props from Async and an AbortController instance
 const loadCookie = async () => {
   let passport
+  //gets passport data from express req.session
   await fetch(`/auth/login`, {
     method: 'GET',
     credentials: 'include'
   }).then((response) => response.json())
   .then(async (data) => {
     passport = Object.keys(data)[1]
-    await fetch(`/auth/login`, {
+    cookieData = data
+    //uses user ID to look up some info in the user table of the database
+    await fetch(`/users/${data.passport.user.id}`, {
       method: 'GET',
       credentials: 'include'
     }).then((response) => response.json())
-    .then(async (data) => {
-      cookieData = data
-      await fetch(`/users/${data.passport.user.id}`, {
-        method: 'GET',
-        credentials: 'include'
-      }).then((response) => response.json())
-      .then((data1) => {
-        userData = data1
-      })
+    .then((data1) => {
+      userData = data1
     })
   })
   return passport

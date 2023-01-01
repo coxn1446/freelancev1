@@ -10,9 +10,13 @@ import freelanceLogo from "../../resources/Freelance v1-logos/Freelance v1-logos
 
 
 const Login = () => {
+  //pulls in UTM parameters to display error messages
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status")
+
+
   function alert () {
+    //displays a pop up message
     window.alert('If you have forgotten your password, then your account is lost forever. I could help you, but wont. Let this be a lesson to you in accountability.')
   }
 
@@ -38,6 +42,7 @@ const Login = () => {
       </div>
       <br></br>
       <p className="loginParagraph" id="secondLoginParagraph" onClick={alert}>Forget password?</p>
+      <div className="loginParagraph" style={{fontSize: 'smaller'}}><Link style={{color: "black"}} to="/privacy">Privacy Policy</Link></div>
     </div>
   );
 }

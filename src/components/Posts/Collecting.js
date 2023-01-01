@@ -4,12 +4,14 @@ import Async from "react-async"
 
 
 const Collecting = () => {
+    //initializes paragraph variables
     let paragraph1 = ""
     let paragraph2 = ""
     let paragraph3b = ""
     let paragraph3c = ""
     let paragraph4 = ""
 
+    //pulls paragraphs from database and sets them to variables outside the function
     const fetchBlog = async () => {
       await fetch(`/blog/collecting`, {
           method: 'GET'

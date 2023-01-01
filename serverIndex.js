@@ -2,9 +2,6 @@ require("dotenv").config();
 const express = require('express');
 const app = express();
 const path = require('path')
-const fs = require('fs')
-var https = require('https');
-
 
 const loaders = require('./server/loaders');
 
@@ -16,11 +13,13 @@ async function startServer() {
   // Init application loaders
   loaders(app);
 
+  //redirects any user not on an https connection to use a secure connection
   if(process.env.REACT_APP_NODE_ENV === "production"){
     app.use((req, res, next) => {
       req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
   })
 
+    //looks in the build folder for static files to display
     app.use('/', express.static(path.join(__dirname, 'build')))
     app.use('/login', express.static(path.join(__dirname, 'build')))
     app.use('/register', express.static(path.join(__dirname, 'build')))
@@ -32,10 +31,12 @@ async function startServer() {
     app.use('/linkedin', express.static(path.join(__dirname, 'build')))
     app.use('/ads', express.static(path.join(__dirname, 'build')))
 
+    //listens for server calls
     app.listen(httpsPORT)
   }
 
 
+  //listens for server calls in development
   if(process.env.REACT_APP_NODE_ENV === "development"){
     app.listen(httpPORT)
   }

@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
+//middleware thunk to run an asynchronous fetch function, grabbing user data from Twitter's API
 export const getTwitterInfo = createAsyncThunk(
     "social/getTwitterInfo",
     async (user) => {
@@ -15,6 +16,7 @@ export const getTwitterInfo = createAsyncThunk(
     }
 );
 
+//middleware thunk to run an asynchronous fetch function, grabbing user data from Linkedin's API
 export const getLinkedinInfo = createAsyncThunk(
     "social/getLinkedinInfo",
     async () => {
@@ -30,6 +32,7 @@ export const getLinkedinInfo = createAsyncThunk(
     }
 );
 
+//middleware thunk to run an asynchronous fetch function, grabbing user data from Facebook's API
 export const getFacebookInfo1 = createAsyncThunk(
     "social/getFacebookInfo1",
     async (token) => {
@@ -44,6 +47,7 @@ export const getFacebookInfo1 = createAsyncThunk(
     }
 );
 
+//middleware thunk to run an asynchronous fetch function, grabbing user data from Facebook's API
 export const getFacebookInfo2 = createAsyncThunk(
     "social/getFacebookInfo2",
     async (token) => {

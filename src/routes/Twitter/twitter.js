@@ -7,10 +7,12 @@ import Async from "react-async"
 
 
 const Twitter = () => {
+    //pulls in UTM parameters to run the next OAuth step
     const [searchParams] = useSearchParams();
     const oauthToken = searchParams.get("oauth_token")
     const oauthVerifier = searchParams.get("oauth_verifier")
 
+    //automatically runs the next OAuth step and then redirects to the home page
     const twitterOAuth3 = async () => {
         await fetch(`/twitter/oauth3/${oauthToken}/${oauthVerifier}`,{
             method: 'POST',

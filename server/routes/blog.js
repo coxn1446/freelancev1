@@ -7,6 +7,7 @@ module.exports = (app) => {
 
     app.use('/blog', router)
 
+    //pulls blogs posts by title from the database
     router.get('/anatomy', async (req, res, next) => {
         const query = 'SELECT * FROM blogs WHERE title = $1';
         const content = await db.query(query, ["Anatomy"])

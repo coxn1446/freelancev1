@@ -30,17 +30,21 @@ const socialSlice = createSlice({
         }
     },
     reducers: {
+        //function executes when user clicks linkedin's sign in button
         linkedinSignIn: () => {
             window.location.assign(`https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${process.env.REACT_APP_LINKEDIN_CLIENTID}&redirect_uri=${process.env.REACT_APP_LINKEDIN_REDIRECTURL}&state=${process.env.REACT_APP_LINKEDIN_STATE}&scope=r_liteprofile%20r_emailaddress%20w_member_social`)
         },
+        //function executes when user clicks facebook's sign in button
         facebookSignIn: () => {
             window.location.assign(`https://www.facebook.com/v15.0/dialog/oauth?client_id=${process.env.REACT_APP_FACEBOOK_CLIENTID}&redirect_uri=${process.env.REACT_APP_FACEBOOK_REDIRECTURL}&state=${process.env.REACT_APP_FACEBOOK_STATE}`)
         },
+        //creates a placeholder job to display when someone signs into LinkedIn
         linkedinChooseJob: (state) => {
             const jobs = ['Underwater Basket Weaver', 'Henchman', 'Ghost Hunter', 'Magician', 'Prairie Dog Wrangler', 'Butterfly Catcher', 'Water Taster', 'Cowgirl', 'Competitive Beekeeper', 'Lion Tamer', 'Disney Land Tour Guide', 'Mascot', 'Soothsayer', 'Chimney Sweep', 'Switchboard Operator', 'Town Crier' ]
             const index = Math.floor(Math.random() * jobs.length)
             state.linkedin.textTwo = jobs[index]
         },
+        //changes a bunch of state variables depending on what profile is selected
         selectProfile: (state, action) => {
             const expr = action.target
             switch (expr) {
@@ -84,13 +88,37 @@ const socialSlice = createSlice({
                 state.textareaPlaceholderText = "Sign in to one of your profiles to start publishing content. What you get: a post on your timeline. What I get: the nominal value received from selling your personal data on the dark web.";
             }
         },
+        //chooses a random horoscope message to display on the homepage
         chooseHoroscope: (state) => {
             const horoscopes = [
-                "Be mindful today. Or don't be, I'm not your boss."
+                "Be mindful today. Or don't be, I'm not your boss.",
+                "Focus on action. Not quite sure what else you CAN focus on tbh.",
+                "You know what you're running from. It's me. Run faster.",
+                "Don't be afraid to let your crack(s) show.",
+                "What is the difference between your public and private self? What about your public and private parts ?",
+                "Talk things out. Start with yourself. Speak with your reflection for at least an hour today.",
+                "Don't escape into abstract intellectualism today. Do something dumb, go watch a monster truck rally.",
+                "Be weary of grand pianos.",
+                "Watch out for carpenters.",
+                "Your Pluto in Scorpio is the source of your unrelenting misery. Nothing is your fault. Eliminate the desire for self-improvement.",
+                "Bury a time capsule in your neighbor's backyard. Tell no one.",
+                "Briefly suspend your belief in oranges. Marvel at your brain's ability to eliminate the existence of certain fruit.",
+                "Take pride in your ambition. Any form of criticism is just thinly veiled jealousy.",
+                "Do something creative today! Build a mental prison for you to live in 24/7!",
+                "Curse out a co-worker for no reason. Mention how much more you make than them even if it's not true.",
+                "Draw a Venn Diagram. Put what you find sexy on one side and what you find terrifying on the other. In the middle put the clown from It.",
+                "Get some new lotion. You're getting flaky.",
+                "Don't show up to work this week. They don't deserve you.",
+                "Your body is more aware than you think. You need to tune that out, try Jack Daniels.",
+                "Your emotions are on the verge of spilling out. Bottle that up, do not seek help; you don't need anything other than a firm belief in yourself.",
+                "Listen to the voices in your head for once.",
+                "Duel someone in the village square over your honor. If your honor hasn't been infringed upon, fight for someone else's.",
+                "Pick a new skill to learn. Make a life-altering decision today with little thought."
             ]
             const index = Math.floor((Math.random() * horoscopes.length))
             state.horoscope = horoscopes[index]
         },
+        //Social route reads UTM parameter which triggers a dispatch which changes these state variables
         changeTextAreaText: (state, action) => {
             const expr = action.target
             switch (expr) {
@@ -108,6 +136,7 @@ const socialSlice = createSlice({
             }
         }
     },
+    //extra Reducers are used to resolve thunk promises
     extraReducers: (builder) => {
         builder
           .addCase(getTwitterInfo.fulfilled, (state, action) => {
@@ -133,6 +162,8 @@ const socialSlice = createSlice({
         })
     }
 })
+
+//exports all state variables
 
 export const selectHoroscope = state => state.social.horoscope;
 

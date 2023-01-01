@@ -10,6 +10,7 @@ module.exports = (app) => {
 
     app.use('/facebook', router);
 
+    //exchanges oAuth token for Access token
     router.get('/oauth2/:code/', (req, res) => {
         const facebookCode = req.params.code
         const endpointURL = 'https://graph.facebook.com/v15.0/oauth/access_token';

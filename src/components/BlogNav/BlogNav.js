@@ -5,6 +5,7 @@ import { useDispatch} from 'react-redux';
 const BlogNav = () => {
   const dispatch = useDispatch()
 
+  //Sends the selected blog post to state variables
   const handleSelectPost = (e) => {
     dispatch({
       type: "blog/selectPost",

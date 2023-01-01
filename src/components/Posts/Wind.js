@@ -4,12 +4,14 @@ import Async from "react-async"
 
 
 const Wind = () => {
+  //initializes paragraph variables
   let paragraph1 = ""
   let paragraph2 = ""
   let paragraph3 = ""
   let paragraph4 = ""
   let paragraph5 = ""
 
+  //pulls paragraphs from database and sets them to variables outside the function
   const fetchBlog = async () => {
       await fetch(`/blog/wind`, {
           method: 'GET'
