@@ -123,8 +123,11 @@ const Social = () => {
     <div className="gridContainerSocial">
       <Nav></Nav>
       <Ad></Ad>
+      <div className="horoscopeContainer">
       <p className="itemBSocial" >Hello, {userData.firstname} {userData.lastname}. Today's date is {date.toLocaleDateString()}. Your horoscope for the day is:</p>
       <p className="itemCSocial" >"{horoscope}"</p>
+      </div>
+      <p className="itemCSocial2" >Use the login buttons below to sign in to your social media accounts. Then fill out the text box. Then click the button below the text box to start sending tweets and making posts.</p>
       {
         cookieData.passport.twitter ? 
           <div style={itemBStyle} className="itemDContainerSocial" id="itemDContainerSocial" onClick={handleSelectProfile}>
