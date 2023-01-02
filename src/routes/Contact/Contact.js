@@ -11,7 +11,7 @@ const Contact = () => {
           <Nav></Nav>
           <div className="paragraphBlog">email: <a href="mailto:freelance1446@gmail.com">freelance1446@gmail.com</a></div>
           <br></br>
-          <div className="paragraphBlog">Github: <a href="https://github.com/coxn1446">https://github.com/coxn1446</a></div>
+          <div className="paragraphBlog">Github: <a href="https://github.com/coxn1446">https://github.com/coxn1446</a><a href="https://github.com/coxn1446/freelancev1"> (source code for this project)</a></div>
           <br></br>
           <div className="paragraphBlog">Instagram: <a href="https://www.instagram.com/williamwildernash/">williamwildernash</a></div>
           <br></br>

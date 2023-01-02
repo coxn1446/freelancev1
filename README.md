@@ -8,7 +8,7 @@ This app represents the culmination of my full-stack web development course. The
 * [Production](#production)
 
 ## General Info
-This web app is designed to be accessible via the browser. In my build, the app was hosted by Heroku. It was written using the PERN stack (PostgreSQL, Express, React, Node).
+This web app is designed to be accessible via the browser. It can be found at https://www.freelancev1.com In my build, the app was hosted by Heroku. It was written using the PERN stack (PostgreSQL, Express, React, Node).
 
 ## Technologies
 
